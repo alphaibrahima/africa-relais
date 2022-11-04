@@ -1,0 +1,366 @@
+<!DOCTYPE html> {% load static %}
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=code "></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'code ');
+    </script>
+    <title>
+        AfricaRelais - Accueil
+    </title>
+    <meta content="" name="description">
+
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static 'img/logo.png' %}" rel="icon">
+    <link href="{% static 'img/logo.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+        integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css"
+        integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.4.1/swiper-bundle.min.css"
+        integrity="sha512-kftIhGv/k/oRHmfDRDEb1MxlaWlW4tiz21rx0yNC2zUWM2n4nxRtX1z3Ijmu54he3Yf9sBX4skJaCe3LTJV1rQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- testimonial integration-->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" />
+
+
+    <style>
+        body {
+            background-color: #E5EEFF;
+        }
+
+        .header {
+            background: #fff;
+            box-shadow: 0 5px 30px rgba(0, 22, 84, .1);
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .linear-bg {
+            background: linear-gradient(180deg, #0057FF 0%, #012F88 100%);
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        .btn-bg-inverse {
+            background-color: #FFFFFF !important;
+            border: 1px solid #0057FF;
+            color: #0057FF !important;
+        }
+
+        .card {
+            border: none;
+            border-radius: 6px;
+            box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+            overflow: hidden;
+
+        }
+
+        .card-title {
+            color: #0057FF;
+        }
+
+
+        .price {
+            color: white;
+            margin-left: 5px;
+            font-weight: bold;
+
+        }
+
+        .colis {
+            position: absolute;
+            width: 107.01px;
+            height: 107.01px;
+            left: 255.42px;
+            top: 447.99px;
+        }
+
+        h5 {
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 25px;
+            line-height: 4px;
+            text-align: center;
+            color: #0057FF;
+        }
+
+        .col-lg-3 {
+            border-radius: 30px;
+        }
+
+        .col-lg-12 {
+            border-radius: 30px;
+        }
+
+        .validation-section {
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            left: 1100px;
+            top: 329px;
+            background: #0057FF;
+            border: 1px solid #E0E0E0;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        .box {
+            border-radius: 30px;
+            background: #ECF3FF;
+            padding: -4px 30px;
+            text-align: center;
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .bi-arrow-right {
+            color: #EFB507;
+        }
+
+        h6 {
+            color: #000000;
+        }
+
+        .label {
+            width: 96.42px;
+            height: 30.96px;
+            left: 96px;
+            top: 2196px;
+            background: #FFFFFF;
+            border: 0.884569px solid #0057FF;
+            box-sizing: border-box;
+            border-radius: 8.84569px;
+        }
+
+        .label_1 {
+            width: 200px;
+            height: 30.96px;
+            left: 249px;
+            top: 2196px;
+            background: #FFFFFF;
+            border: 0.884569px solid #0057FF;
+            box-sizing: border-box;
+            border-radius: 8.84569px;
+        }
+
+        .lab_1 {
+            height: 200px;
+            left: 58px;
+            top: 2010px;
+            padding-top: 15px;
+            background: #E5EEFF;
+            box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.25);
+            border-radius: 30px;
+        }
+
+        h3.stand {
+            color: #0057FF;
+        }
+
+        .lab_2 {
+            height: 161px;
+            left: 536px;
+            top: 2010px;
+            background: #B58304;
+            box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 30px;
+        }
+
+        .lab_3 {
+            height: 161px;
+            left: 536px;
+            top: 2010px;
+            background: #FFC727;
+            box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 30px;
+        }
+
+        #color {
+            color: #333333;
+        }
+
+        #stand {
+            color: #0057FF;
+        }
+
+        table thead tr {
+            font-size: 11.3311px;
+            line-height: 17px;
+            color: #263238;
+        }
+
+        table thead tr th {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 27px;
+        }
+
+
+        table tbody tr td {
+            font-style: normal;
+            line-height: 120px;
+            font-size: 14px;
+            height: 80px;
+            font-style: normal;
+            color: #263238;
+        }
+
+        table thead td {
+            line-height: 30px;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 30px;
+            color: #FFFFFF;
+        }
+
+        .table_mode {
+            height: 200px;
+            padding-top: 15px;
+            box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.25);
+            background-color: #fff;
+            border-radius: 30px;
+        }
+
+        table thead {
+            background: #0057FF;
+            border: 1px solid #0057FF;
+            box-sizing: border-box;
+        }
+
+
+
+        .btn-primary {
+            background: linear-gradient(180deg, #0057FF 0%, #012F88 100%);
+            border-radius: 20px;
+            width: 150px;
+            height: 48px;
+            padding: 11px 35px;
+            color: #FFFFFF;
+        }
+
+        .btn-buy {
+            background: linear-gradient(180deg, #0057FF 0%, #012F88 100%);
+            border-radius: 20px;
+            width: 250px;
+            height: 40px;
+            padding: 11px 35px;
+            color: #FFFFFF;
+        }
+
+        .btn-buy1 {
+            background: linear-gradient(180deg, #0057FF 0%, #012F88 100%);
+            border-radius: 20px;
+            width: 250px;
+            height: 40px;
+            padding: 11px 35px;
+            color: #FFFFFF;
+        }
+
+        .paiement-image {
+            width: 150px;
+            height: 50px;
+        }
+
+        .domicile {
+            background: #FFFFFF;
+            border-radius: 20px;
+            width: 130px;
+        }
+
+        .col-lg-4 {
+            padding-left: 0%;
+            padding-right: 0%
+        }
+
+        .relay {
+            background: #E5EEFF;
+            text-align: center;
+            border-radius: 30px;
+        }
+    </style>
+    {% block extrastyle %} {% endblock extrastyle %}
+</head>
+
+<body>
+    {% block header %}
+    {% include "partials/_header.html" %}
+    {% endblock header %}
+    {% include "partials/_alerts.html" %}
+    {% block content %} {% endblock content %}
+    {% block footer %}
+    {% include "partials/_footer.html" %}
+    {% endblock footer %}
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i></a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+        integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.1.0/dist/js/glightbox.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"
+        integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.4.1/swiper-bundle.min.js"
+        integrity="sha512-pY1t/ADgTwbfGbw0+mRGd33EroA5YgRUWhQNFpPIAdBzyoSb38FsFrf4wBTcS3GFPdTfgtpRrbGCkdl2C2OXYA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Bootstrap icone-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+
+    {% block extrajs %} {% endblock extrajs %}
+
+</body>
+
+</html>

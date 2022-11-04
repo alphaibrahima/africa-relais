@@ -1,0 +1,99 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "team/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Gestion Relayeur</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Relayeur</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered datatable">
+          <thead>
+            <tr>
+              <th scope="col">Nom complet</th>
+              <th scope="col">Date de création</th>
+              <th scope="col">Email</th>
+              <th scope="col">Téléphone</th>
+              <th scope="col">Address</th>
+              <th scope="col">Nombre de livraison</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in deliverymen %}
+
+            <tr id="user-{{ user.id }}">
+              <td>
+                <a href="#" class="text-primary">{{ user.get_full_name }}</a>
+              </td>
+              <td>{{ user.date_joined|date:"d-m-Y" }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.address }}</td>
+              <td>{{ user.deliveries.count }}</td>
+              <td>
+                <button
+                  class="btn btn-outline-danger deactivate-account-btn"
+                  type="button"
+                  title="Desactiver ce compte"
+                  data-url="{% url 'dashboard:team-deactivate-user-account' user.id %}"
+                  data-user-id="{{ user.id }}"
+                  data-user-email="{{ user.email }}"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block extrajs %}
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script>
+  $(document).ready(function () {
+    $(document).on('click', '.deactivate-account-btn', function () {
+      var dataUrl = $(this).attr('data-url')
+      var userEmail = $(this).attr('data-user-email')
+      var userId = $(this).attr('data-user-id')
+
+      if (confirm('Vous désactivez le compte de: ' + userEmail)) {
+        $.ajax({
+          type: 'POST',
+          url: dataUrl,
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+          },
+          dataType: 'json',
+          success: function (response) {
+            alert(response.message)
+            $('#user-' + userId).remove()
+          },
+          error: function (err) {
+            alert(err.error)
+          },
+        })
+      } else {
+        alert('Utilisateur non desactivé')
+      }
+    })
+  })
+</script>
+{% endblock extrajs %}

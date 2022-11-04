@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block extrastyle %}
+<style>
+  .section-header h2 {
+    margin: 10px 0 0 0;
+    padding: 0;
+    font-size: 38px;
+    line-height: 42px;
+    font-weight: 700;
+    color: #1b2559;
+  }
+
+  .section-header p {
+    margin: 10px 0 0 0;
+    padding: 0;
+    font-size: 1rem;
+    line-height: 42px;
+    font-weight: 700;
+    color: #1b2559;
+  }
+</style>
+{% endblock extrastyle %}
+
+{% block content %}
+{% include "partials/_pricing.html" %}
+{% endblock content %}

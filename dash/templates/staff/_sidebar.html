@@ -1,0 +1,155 @@
+{% load static page_tags %}
+
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'user-management' %}" href="{% url 'dashboard:user-management' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/user-alt (2).png' %}"
+        alt="dashboard"
+        class="img-fluid"
+      />
+    </span>
+    <span>Utilisateurs</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'package-management' %}" href="{% url 'dashboard:package-management' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/bx_bxs-box (2).png' %}"
+        alt="Colis"
+        class="img-fluid"
+      />
+    </span>
+    <span>Colis</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'realypoint-management' %}" href="{% url 'dashboard:realypoint-management' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/bi_shop-window.png' %}"
+        alt="Point relais"
+        class="img-fluid"
+      />
+    </span>
+    <span class="amar">Point relais</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'pro-member' %}"
+    href="{% url 'dashboard:pro-member' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/user-alt (2).png' %}"
+        alt="Pro"
+        class="img-fluid"
+      />
+    </span>
+    <span>Pro</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'bill-management' %}"
+    href="{% url 'dashboard:bill-management' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/icon-park-outline_bill2.png' %}"
+        alt="Commision"
+        class="img-fluid"
+      />
+    </span>
+    <span>Commision</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'pack-management' %}" href="{% url 'dashboard:pack-management' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/eos-icons_subscriptions-created-outlined.png' %}"
+        alt="Profil"
+        class="img-fluid"
+      />
+    </span>
+    <span>Abonnement</span>
+  </a>
+</li>
+<!-- <li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'contact-management' %}"
+    href="{% url 'dashboard:contact-management' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/icon-park-outline_notebook (1).png' %}"
+        alt="Carnet d'adresse"
+        class="img-fluid"
+      />
+    </span>
+    <span>Carnet d'adresse</span>
+  </a>
+</li> -->
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'delivery_man_management' %}" href="{% url 'dashboard:delivery_man_management' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/user-alt (2).png' %}"
+        alt="Relayeur"
+        class="img-fluid"
+      />
+    </span>
+    <span>Relayeur</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'delivery-management' %}" href="{% url 'dashboard:delivery-management' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/icon-park-outline_delivery (1).png' %}"
+        alt="livraison"
+        class="img-fluid"
+      />
+    </span>
+    <span>Livraison</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'team-member' %}" href="{% url 'dashboard:team-member' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/user-alt (2).png' %}"
+        alt="livraison"
+        class="img-fluid"
+      />
+    </span>
+    <span>Équipe</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'coupon-list' %}" href="{% url 'dashboard:coupon-list' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/clarity_notification-line (1).png' %}"
+        alt="Colis"
+        class="img-fluid"
+      />
+    </span>
+    <span>Code Promo</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'staff-profile' %}" href="{% url 'dashboard:staff-profile' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/mdi_cog-outline.png' %}"
+        alt="Profile"
+        class="img-fluid"
+      />
+    </span>
+    <span>Profile</span>
+  </a>
+</li>

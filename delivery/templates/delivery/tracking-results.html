@@ -1,0 +1,70 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="titre">
+            <div class="titre-icon">
+                <!-- <img src="" alt=""> -->
+            </div>
+            <div class="pagetitle">
+                <h1 style="color: #0057FF;"> <i class="bi bi-search"></i> SUIVRE UN COLIS</h1>
+                <h3 style="color: #333333;">Suivez votre colis en temps reel</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="pagetitle">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Accueil </a></li>
+                    <li class="breadcrumb-item active"> <span style="color: #333333;"> Suivre Colis </span></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+
+
+        {% if tracking %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Date et Heure</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for track in tracking %}
+                <tr>
+                    <td>
+                        {{ track.created|date:"d-m-Y h:m:s" }}
+                    </td>
+                    <td>
+                        {{ track.note }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-center">Numéro de Suivi non trouvé sur notre système, veuillez réessayer</p>
+        <div class="container mt-5">
+            <form action="{% url 'delivery:tracking-results' %}" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Numéro de colis..." name="tracking_number"
+                        required>
+                    <div class="input-group-append mx-3">
+                        <button class="btn btn-primary" type="submit" style="width: 195px;">Suivre</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+
+
+
+    </div>
+</section>
+{% endblock content %}

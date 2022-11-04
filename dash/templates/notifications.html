@@ -1,0 +1,52 @@
+{% extends "_dash-base.html" %} {% load static page_tags %} {% block sidebar %}
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'notifications' %}"
+    href="{% url 'dashboard:notifications' %}"
+  >
+    <i class="bi bi-bell-fill"></i>
+    <span>Notifications</span>
+  </a>
+</li>
+{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Notifications</h1>
+
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Notifications</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <h2>Historique de vos notifications</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Titre</th>
+              <th scope="col">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for message in unread %}
+
+            <tr>
+              <td>{{ message.timesince }}</td>
+              <td>{{ message.verb }}</td>
+              <td>{{ message.recipient }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

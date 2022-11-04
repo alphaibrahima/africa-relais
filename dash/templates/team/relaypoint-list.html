@@ -1,0 +1,158 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %} {% include "team/_sidebar.html" %}
+{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+    <h1>Historique de point relais</h1>
+    <nav class="mt-2">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active">Point relais</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card card-body">
+            <h2 class="mt-2 text-center">Point Relais</h2>
+
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#addRealyPoint"
+                        class="btn btn-primary float-start"><i class="bi bi-plus"></i></>
+                        Ajouter un point relais</button>
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table table-bordered datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Numéro</th>
+                                <th scope="col">Date de création</th>
+                                <th scope="col">Adresse</th>
+                                <th scope="col">Prénom et Nom</th>
+                                <th scope="col">Téléphone</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Heure d'ouverture</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for relay in relay_point %}
+                            <tr>
+                                <td>{{relay.id }}</td>
+                                <td>{{relay.created|date:"d-m-Y" }}</td>
+                                <td><a href="#" class="text-primary">{{relay.address}}</a></td>
+                                <td>{{relay.user.first_name }} {{relay.user.last_name }}</td>
+                                <td>{{relay.phone}}</td>
+                                <td>{{relay.email}}</td>
+                                <td>{{relay.open_hours}}</td>
+                                <td>
+                                    <button data-object-id="{{ relay.pk }}" id="realypoint"
+                                        class="btn btn-outline-danger delete_realypoint_btn" type="button"
+                                        data-url="{% url 'dashboard:team-delete-relaypoint' relay.pk %}">
+                                        <i class="bi bi-trash "></i>
+                                    </button>
+                                    <a class="btn btn-outline-info"
+                                        href="{% url 'dashboard:team-update-relaypoint' relay.pk %}">
+                                        <i class="bi bi-pencil "></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- New Team Modal -->
+    <div class="modal fade" id="addRealyPoint" tabindex="-1" aria-labelledby="addRealyPointLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addRealyPointLabel">Ajouter un point relais</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form class="row g-3 " method="POST">
+                        {% csrf_token %} {% if errors %} {{ errors|safe }} {% endif %} {% for field in form %}
+                        <div class="col-12">
+                            {{ field }}
+                        </div>
+                        {% endfor%}
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success w-100">Valider</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% comment %}
+    <!-- Updat Team Modal -->
+    <div class="modal fade" id="updateRealyPoint" tabindex="-1" aria-labelledby="addRealyPointLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addRealyPointLabel">Modifier un point relais</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form class="row g-3 " method="POST">
+                        {% csrf_token %} {% if errors %} {{ errors|safe }} {% endif %} {% for field in form_update %}
+                        <div class="col-12">
+                            {{ field }}
+                        </div>
+                        {% endfor%}
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success w-100">Valider</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+    {% endblock content %}
+    {% block extrajs %}
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", ".delete_realypoint_btn", function () {
+                let relayId = $(this).attr('data-object-id');
+                var dataUrl = $(this).attr("data-url")
+                if (confirm("Vous supprimez le point relais: " + relayId)) {
+                    $.ajax({
+                        type: "POST",
+                        url: dataUrl,
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}'
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            alert(response.message)
+                            $("#realypoint" + relayId).remove()
+                        },
+                        error: function (err) {
+                            alert(err.error)
+                        }
+                    });
+                } else {
+                    alert("Point relais non supprimé")
+                }
+
+            })
+
+        });
+    </script>
+
+    {% endblock extrajs %}

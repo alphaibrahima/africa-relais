@@ -1,0 +1,185 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block extrastyle %}
+  <style>
+    .titre-para{
+        color: #0057FF;
+    }
+    .text-para{
+        color: #1A1A1A;
+    }
+  </style>
+{% endblock extrastyle %}
+
+{% block content %}
+    <section>
+        <div class="container mt-5">
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">1. Comment envoyer un colis ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">C'est très simple... suivez les étapes ci-dessous ! <br>
+                        1. Je renseigne les caractéristiques de mon colis <br>
+                        2. Je renseigne les coordonnées du destinataire <br>
+                        3. J’indique l’adresse du destinataire <br>
+                        4. J'imprime ou je retranscris à mains levée le numéro d’envoi sur 
+                        l'étiquette que je colle sur le colis(facultatif)
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">2. Quels types de produits puis-je envoyer ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Vous devez respecter les dimensions de colis exposé sur notre site. <br>
+                        Vous pouvez arrondir le poids de votre colis au kilogramme supérieur pour 
+                        assurer votre estimation.
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">3. Quels sont les produits que je n'ai pas le droit d'envoyer ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Pour prendre connaissance de la liste non exhaustive des produits interdits 
+                        et/ou dangereux veuillez cliquer ici et consulter notamment nos CGV.
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">4. Est-ce que je peux envoyer un colis fragile ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">L’envoi de colis fragile (type vaisselle, porcelaine etc...) n'est pas interdit, 
+                        toutefois, la responsabilité d’AFRICARELAIS n'est pas engagée, en cas de casse. <br>
+                        Pour plus d’informations, veuillez consulter nos CGV.
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">5. Comment préparer mon colis ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para"><strong>Mesurer votre colis</strong>
+                        Disposez d’une balance adaptée pour peser votre colis. Pour les plus petits 
+                        colis, une balance de cuisine suffira.
+                        <strong>Emballer votre colis</strong>
+                        Attendez l’arrivée de notre relayeur afin qu’il puisse vérifier les conditions 
+                        d’admissibilité du colis.
+                        Nous vous conseillons de bien fermer votre colis
+                        Testez la résistance de votre colis. Le produit à envoyer doit être 
+                        conditionné dans un emballage rigide et en bon état.
+                        Le contenu de l’envoi doit être protégé (tissus, papier bulles, protection 
+                        des éléments fragiles...) et calé à l’intérieur.
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">6. Comment suivre le relayeur ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Vous pouvez soit suivre le relayeur soit saisir le numéro de votre colis.
+                        Pour cela il vous suffit de soit : <br>
+                        1. Saisir votre numéro de colis sur la page de Suivi de Colis (N°... ou ...
+                        caractères).<br>
+                        2. Choisir ensuite la situation du relayeur.
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">7. Comment mon destinataire sera prévenu ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Lorsque que votre colis sera arrivé à l’adresse du destinataire, un appel sera 
+                        émis pour vous aviser.
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">8. Combien de jours mon colis est-il gardé avant la livraison ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Nos livraisons se ferons chaque jour sauf pour ceux qui ont remis leur colis à 
+                        nos agents à partir de 17h, dans ce cas la livraison interviendra le lendemain à 
+                        partir de 10h. <br>
+                        Donc sauf circonstances exceptionnelles, nos livraisons se ferons en moins de 
+                        24h.
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">9. Je n'ai pas reçu l'étiquette pour envoyer mon colis ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Sachez qu'il peut avoir un délai de quelques minutes avant de recevoir votre 
+                        étiquette après la validation de votre commande.<br> Nous vous invitons également
+                        à vérifier vos SPAMS et courriers indésirables.
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">10. Je ne parviens pas à commander mon envoi de colis ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Vérifiez que tous les champs obligatoires du formulaire sont correctement 
+                        remplis (un message d'erreur rouge s'affiche lorsque l'un de ces champs a été 
+                        oublié).
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">11. Suis-je obligée de créer un compte pour commander un envoi de colis sur africarelais.sn ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Non, vous pouvez commander un envoi sans créer de compte en cliquant sur 
+                        "l’option d’envoi instantané de colis sans créer de compte".
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">12. Vous envoyez plusieurs colis par jours ?</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Vous êtes un professionnel du e-commerce, et vous expédiez pas moins de 10 
+                        colis par jour ? <br>
+                        Notre solution de commande sur ce site est donc votre meilleur choix.
+                        A partir de l’onglet Envoi colis, nous mettons à disposition un outil permettant
+                        aux Professionnels d'envoyer plusieurs colis par intégration de fichier en toute 
+                        simplicité. <br>
+                        Vous pourrez aussi voir nos formules d’abonnement Cliquez ici.
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="titre-para">BLOC ENVOI DE COLIS</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <p class="container text-para">Sur notre site avec le bloc dénommé <strong>"envoi de colis"</strong> nous vous proposons 
+                        deux volets à renseigner concernant les coordonnés de l’expéditeur et du 
+                        destinataire pour les besoins d’un service optimal de livraison. 
+                        L’horaire de ramassage devra également être indiquée pour vous permettre de 
+                        connaitre l’horaire de livraison.
+                        Il y a aussi un volet pour insérer votre code promo et bénéficier des avantages 
+                        de notre service grâce à votre fidélité.
+                        Vous pourrez ainsi renseigner le choix d’envoi c’est-à-dire si vous choisissez 
+                        une livraison incluant le prix du produit ou s’il s’agit d’une simple livraison.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+    

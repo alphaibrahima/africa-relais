@@ -1,0 +1,358 @@
+{% extends "_base.html" %} {% load static %} {% block content %}
+
+<main>
+
+    <div id="page" class="bg-profil">
+        <div class="titre">
+            <div class="titre-icon">
+                <img src="{% static 'img/user.png' %}" alt="">
+            </div>
+            <div class="titre-text">
+                <h1>MON PROFIL AfricaRelais</h1>
+                <h3>MES INFORMATIONS</h3>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="profile-page">
+            <aside>
+                <div class="profile-picture">
+                    <img src="{{user.avatar.url}}" class="avatar-form" alt="">
+                </div>
+                <nav class="sidebar-nav">
+                    <div class="sidebar-nav-icon">
+                        <!-- <img src="./images/dashboard.png" /> -->
+                        <img src="{% static 'img/dashboard.png' %}" alt="">
+                    </div>
+                    <div class="sidebar-nav-icon active" href="profile">
+                        <!-- <img src="./images/user-rounded.png" /> -->
+                        <img src="{% static 'img/user-rounded.png' %}" alt="">
+                    </div>
+                    <div class="sidebar-nav-icon" href="colis">
+                        <!-- <img src="./images/box.png" /> -->
+                        <img src="{% static 'img/box.png' %}" alt="">
+                    </div>
+                    <div class="sidebar-nav-icon" href="account">
+                        <!-- <img src="./images/dollar-symbol.png" /> -->
+                        <img src="{% static 'img/dollar-symbol.png' %}" alt="">
+                    </div>
+                    <div class="sidebar-nav-icon" href="carnet">
+                        <!-- <img src="./images/contact-book.png" /> -->
+                        <img src="{% static 'img/contact-book.png' %}" alt="">
+                    </div>
+                    <div class="sidebar-nav-icon" href="abonnement">
+                        <!-- <img src="./images/dollar-bill.png" /> -->
+                        <img src="{% static 'img/dollar-bill.png' %}" alt="">
+                    </div>
+                    <div class="sidebar-nav-icon">
+                        <!-- <img src="./images/logout.png" /> -->
+                        <img src="{% static 'img/logout.png' %}" alt="">
+                    </div>
+                </nav>
+            </aside>
+            <div class="onglet">
+                <div class="chemin">
+                    <span>Acceuil</span><img src="{% static 'img/next.png' %}" alt=""><span>Suivre un colis</span>
+                </div>
+                <div id="profile" class="content active">
+                    <div class="forms">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="info-form">
+                                <span>MES INFORMATIONS</span>
+                                <label class="mt-2">{{form.first_name.label}}</label>
+                                <div class="form-group smalls ">
+                                    {{form.first_name}}
+                                </div>
+                                <label class="mt-2">{{form.last_name.label}}</label>
+                                <div class="form-group smalls ">
+                                    {{form.last_name}}
+                                </div>
+                                <label class="mt-2">{{form.address.label}}</label>
+                                <div class="form-group smalls">
+                                    {{form.address}}
+                                </div>
+                                <label class="mt-2">{{form.phone.label}}</label>
+                                <div class="form-group smalls">
+                                    {{form.phone}}
+                                </div>
+                                <div class="form-group smalls">
+                                    <button class="btn btn-primary theme-bg text-light mt-3"
+                                        type="submit">Sauvegarder</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="card border-primary mb-3">
+                            <div class="card-header">Mon Profil</div>
+                            <img class="card-img-top" src="{{user.avatar.url}}" alt="Card image top">
+                            <div class="card-body bg-primary">
+                                <h5 class="card-title">Primary card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="parrainnages">
+                        <h5>Parainnages</h5>
+                        <div class="info-form">
+                            <label>Nom Prénom</label>
+                            <div class="field">
+                                <input type="text" placeholder="Elhadj Ndiaye"> <span>Modifier</span>
+                            </div>
+
+                            <label>Email</label>
+                            <div class="field">
+                                <input type="text" placeholder="Elhadjndiaye@gmail.com"> <span>Modifier</span>
+                            </div>
+
+                            <label>Telephone</label>
+                            <div class="field">
+                                <input type="text" placeholder="774015405"> <span>Modifier</span>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a diam eget erat
+                            iaculis condimentum. Mauris ac volutpat nisi. Praesent et iaculis orci. Aenean vitae mi
+                            lacinia, tincidunt nunc quis, blandit est. Praesent id porttitor odio, vitae
+                            iaculis lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin placerat
+                            sagittis lectus sit amet convallis. Interdum et malesuada fames ac ante ipsum primis in
+                            faucibus. Aenean sem orci, tincidunt id nibh
+                            eget, fermentum dapibus ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+                            volutpat lobortis velit, vitae commodo purus fringilla sed. Proin eget justo vitae metus
+                            ultricies vulputate ultricies at dolor. Sed
+                            bibendum sapien ante, id rhoncus nunc tincidunt sit amet. Orci varius natoque penatibus et
+                            magnis dis parturient montes, nascetur ridiculus mus. Curabitur nec erat sed purus ultrices
+                            suscipit in quis orci. Nulla blandit mi
+                            vel laoreet rhoncus. Aliquam egestas in urna et euismod. Nam sit amet dui imperdiet,
+                            vestibulum sem non, congue lorem. Phasellus iaculis mauris sit amet diam sodales, et mattis
+                            sem egestas. Aliquam dolor leo, vulputate id auctor
+                            eu, venenatis sit amet neque. Ut laoreet ante diam, sit amet tristique erat tincidunt quis.
+                            Nulla nunc nulla, vestibulum eu nulla non, vehicula viverra erat. Fusce leo tortor, suscipit
+                            vitae ipsum non, egestas vehicula quam.
+                            Sed lacinia ac magna id luctus. Suspendisse massa neque, consectetur et turpis et, pharetra
+                            luctus mauris. Cras consectetur sit amet nisl imperdiet porta. Aliquam sollicitudin, neque
+                            ut dictum fringilla, nisl orci vestibulum
+                            orci, eget tristique nibh nulla egestas ipsum. Curabitur vel velit sit amet urna dignissim
+                            fermentum quis vel urna. Sed vel condimentum nisl. Pellentesque tincidunt, ligula sed semper
+                            blandit, lorem lacus congue mauris, ac
+                            viverra sem ex semper dolor. Integer lobortis sodales tortor, eget faucibus ligula congue
+                            vel. Aliquam viverra aliquet odio luctus suscipit. Praesent vel odio nisi. Praesent at mi et
+                            eros fermentum euismod a eu nisi. Donec
+                            at felis nisl.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="colis" class="content">
+                    <div class="content-colis">
+                        <div class="info-form">
+                            <span>MES COLIS</span>
+
+                            <label>NOMBRES</label>
+                            <div class="field">
+                                <input type="text" placeholder="0"> <span>Ajouter</span>
+                            </div>
+
+                            <label>Mes colis en attente de paiement</label>
+                            <div class="field">
+                                <input type="text" placeholder="0"> <span>Ajouter</span>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a diam eget erat
+                            iaculis condimentum. Mauris ac volutpat nisi. Praesent et iaculis orci. Aenean vitae mi
+                            lacinia, tincidunt nunc quis, blandit est. Praesent id porttitor odio, vitae
+                            iaculis lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin placerat
+                            sagittis lectus sit amet convallis. Interdum et malesuada fames ac ante ipsum primis in
+                            faucibus. Aenean sem orci, tincidunt id nibh
+                            eget, fermentum dapibus ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+                            volutpat lobortis velit, vitae commodo purus fringilla sed. Proin eget justo vitae metus
+                            ultricies vulputate ultricies at dolor. Sed
+                            bibendum sapien ante, id rhoncus nunc tincidunt sit amet. Orci varius natoque penatibus et
+                            magnis dis parturient montes, nascetur ridiculus mus. Curabitur nec erat sed purus ultrices
+                            suscipit in quis orci. Nulla blandit mi
+                            vel laoreet rhoncus.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="account" class="content">
+                    <h3>RECHARGER MON COMPTE</h3>
+                    <h3>Je choisis mon mode de paiement</h3>
+                    <div class="checkboxes">
+                        <div class="checkbox">
+                            <input type="radio" name="payement_method" id="">
+                            <h4>Mobile Money</h4>
+                            <img src="{% static 'img/image_payement.png' %}" alt="">
+                        </div>
+
+                        <div class="checkbox">
+                            <input type="radio" name="payement_method" id="">
+                            <h4>Carte Bancaire</h4>
+                            <img src="{% static 'img/image_payement.png' %}" alt="">
+                        </div>
+
+                        <div class="checkbox">
+                            <input type="radio" name="payement_method" id="">
+                            <h4>Domicile point</h4>
+                            <img src="{% static 'img/image_payement.png' %}" alt="">
+                        </div>
+
+                    </div>
+
+                    <div class="buttons">
+                        <button class="btn btn-paid">10 000FCFA</button>
+                        <button class="btn btn-add">AJOUTER</button>
+                    </div>
+
+                    <p>
+
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a diam eget erat iaculis
+                        condimentum. Mauris ac volutpat nisi. Praesent et iaculis orci. Aenean vitae mi lacinia,
+                        tincidunt nunc quis, blandit est. Praesent id porttitor odio, vitae
+                        iaculis lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin placerat
+                        sagittis lectus sit amet convallis. Interdum et malesuada fames ac ante ipsum primis in
+                        faucibus. Aenean sem orci, tincidunt id nibh eget,
+                        fermentum dapibus ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In volutpat
+                        lobortis velit, vitae commodo purus fringilla sed. Proin eget justo vitae metus ultricies
+                        vulputate ultricies at dolor. Sed bibendum sapien
+                        ante, id rhoncus nunc tincidunt sit amet. Orci varius natoque penatibus et magnis dis parturient
+                        montes, nascetur ridiculus mus. Curabitur nec erat sed purus ultrices suscipit in quis orci.
+                        Nulla blandit mi vel laoreet rhoncus.
+                    </p>
+                </div>
+
+                <div id="carnet" class="content">
+                    <div class="carnet">
+                        <h4>MON CARNET D'ADRESSES</h4>
+
+                        <div class="form">
+                            <label>Entrer un nom de contact</label>
+                            <div class="line">
+                                <div class="field">
+                                    <input type="text" placeholder="Elhadj Ndiaye"> <span>Modifier</span>
+                                </div>
+                                <button class="btn btn-search">Recherche</button>
+                            </div>
+
+                            <div class="line">
+                                <select name="" id="">
+                                    <option value="Humain">El hadj Ndiaye</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="adresse">
+                        <h4>AJOUTER UNE ADRESSE</h4>
+
+                        <div class="form">
+                            <label>Entrer un nom de contact</label>
+                            <div class="field">
+                                <input type="text" placeholder="Elhadj Ndiaye">
+                            </div>
+
+                            <hr>
+
+                            <div class="line">
+                                <div class="field">
+                                    <input type="text" placeholder="Nom">
+                                </div>
+                                <div class="field">
+                                    <input type="text" placeholder="Prenom">
+                                </div>
+                                <div class="field">
+                                    <input type="text" placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="line">
+                                <div class="field">
+                                    <input type="text" placeholder="Ville">
+                                </div>
+                                <div class="field">
+                                    <input type="text" placeholder="Adresse">
+                                </div>
+                                <div class="field">
+                                    <input type="text" placeholder="Pays">
+                                </div>
+                            </div>
+
+                            <div class="line">
+                                <div class="field">
+                                    <input type="text" placeholder="Telephone">
+                                </div>
+                            </div>
+
+                            <div class="buttons">
+                                <button class="btn btn-cancel">Annuler</button>
+                                <button class="btn btn-add">AJOUTER</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    </div>
+</main>
+{% endblock content %} {% block extrajs %}
+<script>
+    $(document).ready(function () {
+                var readURL = function (input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('.profile-pic').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $(".file-upload").on('change', function () {
+                    readURL(this);
+                });
+                $(".upload-button").on('click', function () {
+                    $(".file-upload").click();
+                });
+
+                // update profile picture
+                var $avatarForm = $('.avatar-form');
+                $avatarForm.submit(function (event) {
+                    event.preventDefault();
+                    var files = $("#id_avatar")[0].files[0];
+                    var formData = new FormData()
+                    formData.append("csrfmiddlewaretoken", '{{ csrf_token }}')
+                    formData.append('avatar', files);
+                    var $thisURL = $avatarForm.attr('data-url') || window.loaction.href;
+                    $.ajax({
+                        method: 'POST',
+                        url: $thisURL,
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: handleSuccess,
+                        error: handleError,
+                    });
+
+                    function handleSuccess(data) {
+                        console.log("succes", data)
+                        // $avatarForm[0].reset()
+                    }
+
+                    function handleError(ThrowError) {
+                        console.log("error", ThrowError)
+                    }
+                });
+                console.log("succes",
+                data) // $avatarForm[0].reset() } function handleError(ThrowError) { console.log("error", ThrowError) } });
+</script>
+{% endblock extrajs %}

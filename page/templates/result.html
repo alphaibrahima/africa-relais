@@ -1,0 +1,109 @@
+{% extends "_base.html" %} {% load static %}
+{% block extrastyle %}
+<style>
+    .relay_point{
+        color: #0057FF;
+    }
+
+    .relay_position{
+        color: #333333;
+    }
+
+    .relay{
+        color: #333333;
+    }
+
+    .point_relais{
+        background: #E5EEFF;
+        text-align:center;
+        border-radius: 30px;
+    }
+
+    .container_relay{
+        border: 1px solid #E0E0E0;
+        border-radius: 30px;
+        height: 700px;
+    }
+
+    .color_p{
+        color: #000C24;
+    }
+</style>
+{% endblock extrastyle %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="titre">
+            <div class="titre-icon">
+                <!-- <img src="" alt=""> -->
+            </div>
+            <div class="pagetitle">
+                <h1 class="rely_point"> <i class="bi bi-geo-alt-fill"></i> Point De Relais </h1>
+                <h3 class="realy_position">Trouvez votre point de relais facilement</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="pagetitle">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Accueil </a></li>
+                    <li class="breadcrumb-item active"> <span class="realy"> Point de relais </span></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <section>
+        <div class="container ">
+            <div class="row col-lg-12">
+                <div class="col-lg-4 col-md-6 mx-auto" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="box" class="container_relay">
+                        <div class="container">
+                            <h3 class="color_p"> <i class="bi bi-geo-alt-fill"></i> Point de relais </h3>
+                            <div class="point_relais mt-2">
+
+                                {% if relay_point %} {% for relay in relay_point %}
+                                <h6 class="mt-3">Address: {{relay.address}}</h6>
+                                <p>Country: {{relay.country}} <br> City: {{relay.city}}<br> Latitude: {{relay.latitude}} Longitude: {{relay.longitude}}</p>
+                            </div>
+                            {% endfor %} {% else %}
+                            <div class="col-lg-8 mx-auto text-center mt-3">
+                                <h2><i class="bi bi-check-circle text-danger mr-3"></i> Pas de résultats<b class="mt-3">{{ query }}</b></h2>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %} {% block extrajs %}
+<script type="text/javascript">
+    $(document).ready(function(event) {
+        $(document).on('click', ".favourite-button", function(event) {
+
+            event.preventDefault();
+            var relay_point = $(this).attr("value");
+            var url = '{% url "page:favoriteAjax" %}';
+
+            console.log("i am clicked", relay_point);
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    'relay_point': relay_point,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data.relay_point) {
+                        alert(data)
+                    }
+                },
+            });
+        });
+    });
+</script>
+
+{% endblock extrajs %}

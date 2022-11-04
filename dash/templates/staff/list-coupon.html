@@ -1,0 +1,156 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "staff/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Code promo</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Code promo</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <h2>Code promo</h2>
+
+      <div class="my-2 float-end">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#addPack"
+        >
+          Ajouter un code promo
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered datatable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Code</th>
+              <th scope="col">Valide à partir de</th>
+              <th scope="col">Valide pour</th>
+              <th scope="col">Reduction en %</th>
+              <th scope="col">Active</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for coupon in coupons %}
+            <tr>
+              <td>{{ coupon.id }}</td>
+              <td><a href="#" class="text-primary"> {{ coupon.code }} </a></td>
+              <td>{{ coupon.valid_from|date:"d-m-Y" }}</td>
+              <td>{{ coupon.valid_to|date:"d-m-Y"}}</td>
+              <td>{{ coupon.discount }}</td>
+              <td>{% if coupon.active %} Oui {% else %} Non {% endif %}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm assign-coupon"
+                  data-coupon-id="{{ coupon.id }}"
+                  data-bs-toggle="modal"
+                  data-bs-target="#assingcoupon"
+                >
+                  Assigner
+                </button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Team Modal -->
+<div
+  class="modal fade"
+  id="addPack"
+  tabindex="-1"
+  aria-labelledby="addPackLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCodeLabel">Ajouter un code promo</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" method="POST">
+          {% csrf_token %} {% if errors %} {{ errors|safe }} {% endif %}
+          <div class="col-12">{{ form }}</div>
+
+          <div class="col-12">
+            <button type="submit" class="btn btn-success w-100">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Team Modal -->
+<div
+  class="modal fade"
+  id="assingcoupon"
+  tabindex="-1"
+  aria-labelledby="assingcouponLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assingcouponLabel">
+          Assigner coupon à un utilisateur
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="col-12">
+            {{ assign_form.customer }}
+            <input type="hidden" name="coupon_id" id="couponId" />
+          </div>
+
+          <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-success w-100">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $(document).on('click', '.assign-coupon', function () {
+      var couponId = $(this).attr('data-coupon-id')
+      $('#couponId').val(couponId)
+    })
+  })
+</script>
+{% endblock extrajs %}

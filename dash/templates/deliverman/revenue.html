@@ -1,0 +1,51 @@
+{% extends "_dash-base.html" %}
+{% load static %}
+{% block sidebar %}
+{% include "deliverman/_sidebar.html" %}
+ {% endblock sidebar %}
+
+ {% block pagetitle %}
+<div class="pagetitle">
+    <h1>Commision Relayeur</h1>
+</div>
+{% endblock pagetitle %}
+{% block content %}
+<section class="section">
+    <div class="row">
+        <div class="pagetitle">
+            <h1 class="text-center">Commisions</h1>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Commision par <br>Envoi <br> <span class="price"> 11 500 FCA </span></h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Commision par<br> Retrait <br> <span class="price"> 20 500 FCFA</span></h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Commision par <br> Abonnement <br> <span class="price"> 8000 FCFA </span></h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 text-center">
+            <div class="card" style="background: linear-gradient(284.31deg, #012F88 0%, #0057FF 100%);border-radius: 20px;">
+                <div class="card-body">
+                    <h5 class="card-title text-center" style="color: #FFFFFF;">Total <br> Commision <br> 40 000 FCFA </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

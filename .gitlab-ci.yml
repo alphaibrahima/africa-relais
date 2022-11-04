@@ -1,0 +1,26 @@
+image: python:3.8
+
+stages:
+  - test
+  - deploy
+
+before_script:
+  - apt-get update -qq && apt-get install -y -qq sshpass
+
+all_tests:
+  stage: test
+  script:
+    - sh ./scripts/install.sh
+    - pytest
+  when: on_success
+  only:
+    - branches
+
+codestyle:
+  stage: test
+  script:
+    - sh ./scripts/install.sh
+    - flake8 && black  --exclude migrations  --check .
+  when: on_success
+  only:
+    - branches

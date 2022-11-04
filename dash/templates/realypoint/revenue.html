@@ -1,0 +1,74 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "realypoint/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1 class="mb-2">Revenue du Point relais</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Revenue</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<section class="section">
+  <div class="row">
+    <div class="pagetitle">
+      <h1 class="text-center mb-2">Commisions</h1>
+    </div>
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            Commision par <br />Envoi <br />
+            <span class="price"> 11 500 FCA </span>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            Commision par<br />
+            Retrait <br />
+            <span class="price"> 20 500 FCFA</span>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            Commision par <br />
+            Abonnement <br />
+            <span class="price"> 8000 FCFA </span>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 text-center mx-auto">
+      <div
+        class="card"
+        style="
+          background: linear-gradient(284.31deg, #012f88 0%, #0057ff 100%);
+          border-radius: 20px;
+        "
+      >
+        <div class="card-body">
+          <h5 class="card-title text-center" style="color: #ffffff">
+            Total <br />
+            Commision <br />
+            40 000 FCFA
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

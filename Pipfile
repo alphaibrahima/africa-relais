@@ -1,0 +1,34 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==3.2"
+pillow = "*"
+gunicorn = "*"
+dj-database-url = "*"
+psycopg2 = "*"
+whitenoise = "*"
+django-allauth = "*"
+pytest = "==6.2.5"
+pytest-django = "==4.4.0"
+requests = "==2.26.0"
+weasyprint = "*"
+xlrd = "*"
+django-import-export = "*"
+django-notifications-hq = "*"
+notifications = "*"
+social-auth-app-django = "*"
+sentry-sdk = "*"
+
+[dev-packages]
+autopep8 = "*"
+black = "*"
+flake8 = "*"
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true

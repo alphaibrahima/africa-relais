@@ -1,0 +1,46 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "staff/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Historique de colis</h1>
+  <nav class="mt-1">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Historique des livraisons</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <h2 class="mt-2">Historique des livraisons</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered datatable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date</th>
+              <th scope="col">Expéditeur</th>
+              <th scope="col">Client</th>
+              <th scope="col">Type de livraison</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for delivery in deliveries %}
+            <tr>
+              <td>{{ delivery.id }}</td>
+              <td>{{ delivery.created|date:'d-m-Y' }}</td>
+              <td>{{ delivery.delivered_by.get_full_name }}</td>
+              <td>{{ delivery.customer.full_name }}</td>
+              <td>{{ delivery.get_mode_display }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

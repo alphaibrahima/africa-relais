@@ -1,0 +1,7 @@
+<form action="" method="get">
+    <select>
+        {% for zone in zones %}
+        <option value="{{ zone.id }}">{{ zone.title }}</option>
+{% endfor %}
+    </select>
+</form>

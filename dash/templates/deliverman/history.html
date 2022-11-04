@@ -1,0 +1,49 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "deliverman/_sidebar.html" %}
+<!-- End Page Title -->
+{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Historique de Colis Relayeur</h1>
+</div>
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card recent-sales">
+      <div class="card-body">
+        <h5 class="card-title">Historique de colis</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered datatable">
+            <thead>
+              <tr>
+                <th scope="col">Numéro suivi colis</th>
+                <th scope="col">Date dépôt</th>
+                <th scope="col">Destinataire</th>
+                <th scope="col">Expéditeur</th>
+                <th scope="col">Nom du relayeur</th>
+                <th scope="col">Mode livraison</th>
+                <th scope="col">Date retrait</th>
+                <th scope="col">Prix Livraison</th>
+                <th scope="col">Commision</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for package in packages %}
+              <tr>
+                <td>{{package.tracking_number}}</td>
+                <td>{{package.created|date:"d-m-Y"}}</td>
+                <td>{{package.customer.full_name}}</td>
+                <td>{{package.sender.get_full_name}}</td>
+                <td>{{package.delivered_by.get_full_name}}</td>
+                <td>{{package.get_mode_display}}</td>
+                <td>{{package.created|date:"d-m-Y"}}</td>
+                <td>{{package.amount}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block extrastyle %}
+<style>
+    .africa_r {
+        text-align: left;
+    }
+
+    .titre_about {
+        color: #0057FF;
+    }
+</style>
+{% endblock extrastyle %}
+
+{% block content %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+                <img src="{% static 'img/Group-145.png' %}" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+                <h3 class="titre_about" data-aos="fade-up">AfricaRelais, le specialiste de la livraison de colis aux
+                    particuliers </h3>
+                <p data-aos="fade-up" data-aos-delay="400">Nous sommes une équipe dynamique, professionnelle et à
+                    l’écoute de nos clients
+                    flexible, une bonne connaissance de dakar et sa région.
+                    AfricaRelais est la pour vous faciliter vos livraison de manière sécurisée.
+                    En quelques clics vos colis à votre porte.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Hero -->
+<section id="hero" class="hero d-flex align-items-center mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+                <h3 class="titre_about" data-aos="fade-up">AfricaRelais, le specialiste de la livraison de colis aux
+                    particuliers </h3>
+                <p data-aos="fade-up" data-aos-delay="400"> La qualité : un fort désir de proposer une qualité de
+                    service irréprochable à ses
+                    clients
+                    La détermination : l’envie et la capacité à se donner les moyens afin de trouver des
+                    solutions efficaces et efficientes pour la livraison des colis de ses clients
+                    L’engagement : le besoin d’insérer les personnes en situation de handicap dans
+                    l’entreprise, sa sensibilité sur les questions environnementales (exemple du besoin
+                    d’Africa-Relais de mettre en place des actions citoyennes de nettoyage dans les
+                    quartiers de Dakar, …)
+                </p>
+            </div>
+            <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+                <img src="{% static 'img/Group-145.png' %}" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

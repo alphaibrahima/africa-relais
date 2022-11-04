@@ -1,0 +1,36 @@
+{% load static %} {% load static page_tags %}
+
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'particular-package-list' %}"
+    href="{% url 'dashboard:particular-package-list' %}">
+    <span>
+      <img src="{% static 'img/dash/bx_bxs-box (2).png' %}" alt="Colis" class="img-fluid" />
+    </span>
+    <span>Colis</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'particular-bill-list' %}"
+    href="{% url 'dashboard:particular-bill-list' %}">
+    <span>
+      <img src="{% static 'img/dash/icon-park-outline_bill2.png' %}" alt="Facture" class="img-fluid" />
+    </span>
+    <span>Facture</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'paiement' %}" href="{% url 'dashboard:paiement' %}">
+    <span>
+      <img src="{% static 'img/dash/clarity_dollar-line.png' %}" alt="Facture" class="img-fluid" />
+    </span>
+    <span>Paiement</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'particular-profile' %}" href="{% url 'dashboard:particular-profile' %}">
+    <span>
+      <img src="{% static 'img/dash/mdi_cog-outline.png' %}" alt="Parametres" class="img-fluid" />
+    </span>
+    <span>Profile</span>
+  </a>
+</li>

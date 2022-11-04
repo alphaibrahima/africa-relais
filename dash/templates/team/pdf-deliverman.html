@@ -1,0 +1,37 @@
+<html>
+
+<body>
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-body">
+                <h2 class="mt-2 text-center">Livraisons</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Numéro</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Adresse</th>
+                                <th scope="col">Prénom et Nom</th>
+                                <th scope="col">Téléphone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deliver in delivery %}
+                            <tr>
+                                <td>{{deliver.delivered_by.id }}</td>
+                                <td>{{deliver.created }}</td>
+                                <td><a href="#" class="text-primary">{{deliver.delivered_by.address}}</a></td>
+                                <td>{{deliver.delivered_by.first_name }} {{deliver.delivered_by.last_name }}</td>
+                                <td>{{deliver.delivered_by.phone}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

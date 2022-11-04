@@ -1,0 +1,55 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block extrastyle %}
+<style>
+    .titre_about {
+        color: #0057FF;
+        font-size: 28px;
+    }
+
+    .bi {
+        color: #0057FF;
+    }
+
+    .btn-primary {
+        width: 250px;
+    }
+</style>
+{% endblock extrastyle %}
+
+{% block content %}
+<!-- <section class="container">
+        <div class="shadow rounded">
+            <h2 class="titre-para">Devenez Relayeur chez AfricaRelais</h2>
+        </div>
+    </section> -->
+<section id="hero" class="hero d-flex align-items-center mt-5">
+    <div class="container shadow bg-body rounded">
+        <div class="row">
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+                <h3 class="titre_about" data-aos="fade-up">
+                    <i class="bi bi-arrow-right"></i>
+                    Devenez Realyeur chez AfricaRelais </h3>
+                <p data-aos="fade-up" data-aos-delay="400"> La qualité : un fort désir de proposer une qualité de
+                    service irréprochable à ses
+                    clients
+                    La détermination : l’envie et la capacité à se donner les moyens afin de trouver des
+                    solutions efficaces et efficientes pour la livraison des colis de ses clients
+                    L’engagement : le besoin d’insérer les personnes en situation de handicap dans
+                    l’entreprise, sa sensibilité sur les questions environnementales (exemple du besoin
+                    d’Africa-Relais de mettre en place des actions citoyennes de nettoyage dans les
+                    quartiers de Dakar, …)
+                </p>
+            </div>
+            <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+                <img src="{% static 'img/Group-145.png' %}" class="img-fluid" alt="">
+            </div>
+        </div>
+        <div class="btn-relay mt-5 mb-5">
+            <center><a href="https://forms.gle/TT18da75n9ctBsbZA" target="_blank" class="btn btn-primary follow">
+                    DEVENEZ RELAYEUR</a></center>
+        </div>
+
+    </div>
+</section>
+{% endblock content %}

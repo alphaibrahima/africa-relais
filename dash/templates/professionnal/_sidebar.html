@@ -1,0 +1,75 @@
+{% load static %} {% load page_tags %}
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'professionnal-address-book' %}"
+    href="{% url 'dashboard:professionnal-address-book' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/icon-park-outline_notebook (1).png' %}"
+        alt="Carnet d'adresse"
+        class="img-fluid"
+      />
+    </span>
+    <span>Carnet d'adresse</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'professionnal-package-list' %}"
+    href="{% url 'dashboard:professionnal-package-list' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/bx_bxs-box (2).png' %}"
+        alt="Colis"
+        class="img-fluid"
+      />
+    </span>
+    <span>Colis</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'professionnal-revenus-list' %}"
+    href="{% url 'dashboard:professionnal-revenus-list' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/icon-park-outline_bill2.png' %}"
+        alt="Colis"
+        class="img-fluid"
+      />
+    </span>
+    <span>Revenus</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'paiement_pro' %}"
+    href="{% url 'dashboard:paiement_pro' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/clarity_dollar-line.png' %}"
+        alt="Facture"
+        class="img-fluid"
+      />
+    </span>
+    <span>Paiement</span>
+  </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link {% current_link_active 'relypoint_list' %}" href="{% url 'dashboard:relypoint_list' %}">
+        <span>
+      <img src="{% static 'img/dash/bi_shop-window.png' %}" alt="dashboard" class="img-fluid">
+    </span>
+        <span>Point relais</span>
+    </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'professionnal-profile' %}"
+    href="{% url 'dashboard:professionnal-profile' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/mdi_cog-outline.png' %}"
+        alt="Profile"
+        class="img-fluid"
+      />
+    </span>
+    <span>Profile</span>
+  </a>
+</li>

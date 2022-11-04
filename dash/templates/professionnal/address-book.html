@@ -1,0 +1,47 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "professionnal/_sidebar.html" %}<!-- End Page Title -->
+{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Carnet d'adresse de point relais</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Carnet d'adresse</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <h2>Mes contacts</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered datatable">
+          <thead>
+            <tr>
+              <th scope="col">Nom complet</th>
+              <th scope="col">Email</th>
+              <th scope="col">Téléphone</th>
+              <th scope="col">Adresse de livraison</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for contact in contacts %}
+
+            <tr>
+              <td>{{ contact.full_name }}</td>
+              <td>
+                <a href="#" class="text-primary">{{ contact.email }}</a>
+              </td>
+              <td>{{ contact.phone }}</td>
+              <td>{{ contact.address }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

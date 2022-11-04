@@ -1,0 +1,110 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "staff/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Liste des professionelles</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">professionelles</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Nom complet</th>
+              <th scope="col">Date de création</th>
+              <th scope="col">Email</th>
+              <th scope="col">Téléphone</th>
+              <th scope="col">Address</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for professional in professionals %}
+            <tr>
+              <td>
+                <a href="#" class="text-primary"
+                  >{{ professional.get_full_name }}</a
+                >
+              </td>
+              <td>{{ professional.date_joined|date:"d-m-Y" }}</td>
+              <td>{{ professional.email }}</td>
+              <td>{{ professional.phone }}</td>
+              <td>{{ professional.address }}</td>
+              <td>
+                <div class="d-flex">
+                  <!-- <button
+                    data-object-id="{{professional.pk}}"
+                    id="professional"
+                    class="btn btn-outline-danger deactivate_pro_account me-2"
+                    type="button"
+                    data-url="{% url 'dashboard:deactivate-user-account' professional.pk %}"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button> -->
+                  <button type="button" class="btn btn-outline-danger"  data-url="" title="Desactiver ce compte" data-bs-toggle="modal" data-bs-target="#ModalForDesactivate">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  <div class="modal fade" id="ModalForDesactivate" tabindex="-1" aria-labelledby="ModalLabelDesactivate" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="ModalLabelDesactivate">Vous allez supprimer le ciompte de :{{ professional.phone }}</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+                          <button type="button" class="btn btn-outline-success">OK</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block extrajs %}
+<script>
+  $(document).ready(function () {
+    $(document).on('click', '.deactivate_pro_account', function () {
+      let proID = $(this).attr('data-object-id')
+      var dataUrl = $(this).attr('data-url')
+      if (confirm('Vous supprimez le compte professionnnel: ' + proID)) {
+        $.ajax({
+          type: 'POST',
+          url: dataUrl,
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+          },
+          dataType: 'json',
+          success: function (response) {
+            alert(response.message)
+            $('#professional-' + proID).remove()
+          },
+          error: function (err) {
+            alert(err.error)
+          },
+        })
+      } else {
+        alert('compte professionnnel non desactivé')
+      }
+    })
+  })
+</script>
+
+{% endblock extrajs %}

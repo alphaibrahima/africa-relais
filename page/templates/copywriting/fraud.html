@@ -1,0 +1,62 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block extrastyle %}
+<style>
+    .titre-para {
+        color: #0057FF;
+    }
+
+    .text-para {
+        color: #1A1A1A;
+    }
+</style>
+{% endblock extrastyle %}
+
+
+
+{% block content %}
+<section>
+    <div class="text-center mt-5">
+        <h2 class="titre-para">SIGNALEMENT FRAUDES</h2>
+    </div>
+    <div class="container mt-5">
+        <div class="section_1">
+            <p class="text-para">Il existe une technique d’escroquerie appelée le ‘’Phishing’’ (ou "hameçonnage")
+                elle a pour objectif de collecter des données personnelles et informations
+                confidentielles des utilisateurs (identifiants, numéros de carte bancaire, wave
+                et orange money...) en usurpant une identité.
+                Il se manifeste notamment sous la forme de mails ou de SMS similaires à ceux
+                envoyés par une enseigne de confiance, visant à vous attirer vers un site
+                frauduleux.
+                La plupart des entreprises du E-Commerce , sont victimes d’usurpation de
+                leur identité par des personnes mal intentionnées afin de tromper leurs clients.
+            </p>
+        </div>
+        <div class="section_2">
+            <h4 class="titre-para">1. Ne jamais cliquer sur un lien de téléchargement</h4>
+            <p class="text-para">Nous ne vous demanderons jamais de télécharger un fichier, d’effectuer un
+                virement bancaire, d’envoyer un SMS pour suivre votre colis ou de contacter
+                un numéro de téléphone surtaxé.
+                Vous pourrez toujours vous référer à notre site internet pour nous contacter si
+                vous avez besoin de renseignement.
+            </p>
+        </div>
+        <div class="section_3">
+            <h4 class="titre-para">2. Toujours vérifier l’adresse e-mail d’envoi</h4>
+            <p>Nous vous invitons à être vigilant en vérifiant le domaine de l’expéditeur. Tous
+                nos e-mails sont envoyés depuis........................, bien entendu jamais depuis
+                une adresse @gmail.com par exemple.
+            </p>
+        </div>
+        <div class="section_4">
+            <h4 class="titre-para">3. En cas de doute, contactez-nous et signalez</h4>
+            <p class="text-para">Si vous pensez avoir été victime de Phishing, ou si vous pensez avoir reçu un e-
+                mail s’apparentant à cette forme d’escroquerie, n’hésitez pas à nous en faire
+                part via l’adresse mail ....................., ou de le signaler via notre plateforme.
+                Si vous avez été victime d’escroquerie nous vous conseillons de vous rapprocher de la police afin de
+                déposer une plainte.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock content %}

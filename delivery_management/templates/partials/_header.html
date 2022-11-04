@@ -1,0 +1,90 @@
+{% load static page_tags %} {% block extrastyle %}
+<style>
+  .getstarted.scrollto.espace {
+    background: linear-gradient(180deg, #0057ff 0%, #012f88 100%);
+    border-radius: 20px;
+  }
+
+  .getstarted.scrollto.connect {
+    border-radius: 20px;
+    width: 140px;
+    height: 40px;
+    justify-content: center;
+    margin-right: 2px;
+  }
+
+  .getstarted.scrollto.login {
+    border-radius: 20px;
+    background: linear-gradient(180deg, #0057ff 0%, #012f88 100%);
+    width: 140px;
+    height: 40px;
+    justify-content: center;
+    margin-left: 15px;
+  }
+
+  #logo-title {
+    color: #0057ff;
+    font-size: 1rem;
+  }
+
+  .btn-button {
+    border: 2px solid #0057ff;
+    border-radius: 20px;
+  }
+
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+{% endblock extrastyle %}
+
+<header id="header" class="header fixed-top">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a href="/" class="logo d-flex align-items-center">
+      <img src="{% static 'img/logo.png' %}" alt="" />
+      <span id="logo-title">AfricaRelais</span>
+    </a>
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li>
+          <a class="nav-link scrollto {% current_link_active 'send-package' %}"
+            href="{% url 'delivery:send-package' %}">Envoi de colis</a>
+        </li>
+        <li>
+          <a class="nav-link scrollto {% current_link_active 'package-tracking' %}"
+            href="{% url 'delivery:package-tracking' %}">Suivi de colis</a>
+        </li>
+        <li>
+          <a class="nav-link scrollto {% current_link_active 'relay' %}" href="{% url 'page:relay' %}">Point relais</a>
+        </li>
+        <li>
+          <a class="nav-link scrollto {% current_link_active 'relayer_page' %}"
+            href="{% url 'delivery:relayer_page' %}">relayeur</a>
+        </li>
+        <li>
+          <a class="nav-link scrollto {% current_link_active 'subscription' %}"
+            href="{% url 'page:subscription' %}">Abonnement</a>
+        </li>
+
+        {% if user.is_authenticated %}
+        <li>
+          <a class="getstarted scrollto espace {% current_link_active 'dashboard' %}"
+            href="{% url 'dashboard:dashboard' %}">Mon espace</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="getstarted scrollto connect btn-button {% current_link_active 'login' %} btn-bg-inverse"
+            href="{% url 'login' %}">Se connecter</a>
+        </li>
+        <li>
+          <a class="getstarted scrollto login {% current_link_active 'register' %}"
+            href="{% url 'register' %}">S'inscrire</a>
+        </li>
+        {% endif %}
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>

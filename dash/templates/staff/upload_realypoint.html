@@ -1,0 +1,43 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %} {% include
+"team/_sidebar.html" %} {% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Point Relais</h1>
+  <nav>
+    <ol class="breadcrumb mt-2">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Ajouter un point relais</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<section class="section profile">
+  <div class="row">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="pt-2">
+          <h5 class="card-title text-center pb-0 fs-4">
+            Uploader des points relais
+          </h5>
+        </div>
+
+        <form
+          method="POST"
+          class="post-form"
+          enctype="multipart/form-data"
+          name="myfile"
+        >
+          {% csrf_token %} {{ form.as_p }}
+          <input
+            type="submit"
+            value="Upload"
+            name="Upload"
+            class="btn btn-primary"
+            accept=".csv, .xlsx"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% load page_tags %} {% load static %}
+
+<li class="nav-item">
+    <a class="nav-link {% current_link_active 'deliverman-revenue' %}" href="{% url 'dashboard:deliverman-revenue' %}">
+        <span>
+      <img
+        src="{% static 'img/dash/icon-park-outline_bill2.png' %}"
+        alt="Colis"
+        class="img-fluid"
+      />
+    </span>
+        <span>Revenus</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link {% current_link_active 'deliverman-history-list' %}" href="{% url 'dashboard:deliverman-history-list' %}">
+        <span>
+      <img
+        src="{% static 'img/dash/bx_bxs-box (2).png' %}"
+        alt="Colis"
+        class="img-fluid"
+      />
+    </span>
+        <span>Colis</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link {% current_link_active 'deliverman-realypoint_list' %}" href="{% url 'dashboard:deliverman-realypoint_list' %}">
+        <span>
+      <img
+        src="{% static 'img/dash/bi_shop-window.png' %}"
+        alt="dashboard"
+        class="img-fluid"
+      />
+    </span>
+        <span>Point relais</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link {% current_link_active 'deliverman-profile' %}" href="{% url 'dashboard:deliverman-profile' %}">
+        <span>
+      <img
+        src="{% static 'img/dash/mdi_cog-outline.png' %}"
+        alt="Parametres"
+        class="img-fluid"
+      />
+    </span>
+        <span>Profil</span>
+    </a>
+</li>

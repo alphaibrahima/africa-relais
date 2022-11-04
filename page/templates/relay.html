@@ -1,0 +1,257 @@
+{% extends "_base.html" %} {% load static %}
+
+
+{% block extrastyle %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<style>
+    .select2-container--default .select2-selection--single {
+        margin-right: 4px;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 35px;
+    }
+
+    .select2-selection__arrow {
+        display: none;
+    }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        padding-top: 5px;
+        text-align: left;
+    }
+
+
+    #map_wrapper_div {
+        height: 700px;
+        width: 736px;
+    }
+
+    #googleMap {
+        width: 720px;
+        height: 699px;
+    }
+
+    .input-group.form-control {
+        border-radius: 15px;
+    }
+
+    .select2-container {
+        width: 85% !important;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 50px;
+    }
+
+
+    @media (max-width: 768px) {
+        .d-flex {
+            max-width: 90%;
+
+        }
+
+        .select2-container {
+            position: relative;
+            flex: 1 1 auto;
+            width: 1% !important;
+            min-width: 0;
+        }
+    }
+</style>
+{% endblock extrastyle %}
+
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="titre">
+            <div class="titre-icon">
+                <!-- <img src="" alt=""> -->
+            </div>
+            <div class="pagetitle">
+                <h1 style="color: #0057ff">
+                    <i class="bi bi-geo-alt-fill"></i> Point De Relais
+                </h1>
+                <h3 style="color: #333333">Trouvez votre point de relais facilement</h3>
+            </div>
+        </div>
+        <hr />
+        <div class="pagetitle">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+                    <li class="breadcrumb-item active">
+                        <span style="color: #333333"> Point de relais </span>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="search-section">
+        <div class="container">
+            <form method="get" id="relayForm">
+                <!-- {% csrf_token %} -->
+                <div class="input-group">
+                    <select class="departures form-control" name="address" style="width: 100%" required id="address">
+                        <option value=""></option>
+                        {% for relay in all_relay_point %}
+                        <option value="{{ relay.name }}">{{ relay.name }} - {{ relay.address }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-append mx-3">
+                        <button class="btn btn-primary follow" type="submit">Trouver</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <div class="row col-lg-12">
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="box" style="
+              border: 1px solid #e0e0e0;
+              border-radius: 30px;
+              height: 700px;
+              overflow-y: scroll;
+            ">
+                        <div class="container mt-3">
+                            <h3 style="color: #000c24">
+                                <i class="bi bi-geo-alt-fill"></i> Point de relais autour
+                            </h3>
+                            {% for relay in relay_point %}
+                            <div class="mt-4 mb-3" style="
+                  background: #e5eeff;
+                  text-align: center;
+                  border-radius: 20px;
+                  padding:4px 0;
+                ">
+                                <h6 class="mt-3">{{relay.name}}</h6>
+                                <p>
+                                    Adresse: <strong>{{ relay.address }}</strong> <br>
+                                    Téléphone: <strong>{{relay.phone|default_if_none:""}}</strong>
+                                </p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div id="googleMap" style="width: 100%;
+                    height: 100%;"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}
+
+
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://maps.google.com/maps/api/js?key={{ GOOGLE_MAP_API_KEY }}&libraries=places" type="text/javascript">
+</script>
+<script>
+    $(document).ready(function () {
+        $('.departures').select2();
+
+        function getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        async function getCoordinates(address) {
+            var data = await fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + address +
+                    '&key=' +
+                    "{{ GOOGLE_MAP_API_KEY }}")
+                .then(response => response.json())
+                .then(data => {
+                    const latitude = data.results[0].geometry.location.lat;
+                    const longitude = data.results[0].geometry.location.lng;
+                    return {
+                        latitude,
+                        longitude
+                    }
+                })
+                .catch(error => {
+                    return error;
+                });
+            return data
+        }
+
+
+        var lat = 14.775562500000000;
+        var lon = -17.417187500000000;
+        var map = null;
+
+        function initMap(data) {
+            map = new google.maps.Map(document.getElementById("googleMap"), {
+                center: new google.maps.LatLng(lat, lon),
+                zoom: 11,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: true,
+                scrollwheel: false,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+                },
+                navigationControl: true,
+                navigationControlOptions: {
+                    style: google.maps.NavigationControlStyle.ZOOM_PAN
+                }
+            });
+            // Nous parcourons la liste des villes
+            for (relay in data) {
+                var marker = new google.maps.Marker({
+                    // A chaque boucle, la latitude et la longitude sont lues dans le tableau
+                    position: {
+                        lat: Number(data[relay].latitude),
+                        lng: Number(data[relay].longitude),
+                    },
+                    // On en profite pour ajouter une info-bulle contenant le nom de la ville
+                    title: data[relay].title,
+                    map: map
+                });
+            }
+        }
+
+        function getDate(data) {
+            initMap(data.data);
+        }
+
+
+        var address = getParameterByName("address") || ""
+        $.ajax({
+            type: 'GET',
+            url: `{% url 'page:get_relay_points' %}?address=${address}`,
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            dataType: 'json',
+            success: function (response) {
+                console.log("response ", response);
+                getDate(response)
+            },
+            error: function (err) {
+                alert(err.error)
+            },
+        })
+
+        const center = {
+            lat: 50.064192,
+            lng: -130.605469
+        };
+
+
+    })
+</script>
+{% endblock extrajs %}

@@ -1,0 +1,70 @@
+{% extends "_dash-base.html" %}
+{% load static %}
+
+{% block sidebar %}
+{% include "particular/_sidebar.html" %}
+{% endblock sidebar %}
+
+{% block pagetitle %}
+<div class="pagetitle">
+    <h1>Paiement Carte Bancaire</h1>
+    <nav>
+        <ol class="breadcrumb mt-2">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'dashboard:paiement' %}">Mode de Paiement</a></li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %}
+
+{% block content %}
+  <section class="container">
+      <div class="row">
+        <div class="pagetitle text-center">
+            <h1 class="mb-3" >PAYER AVEC CARTE BANCAIRE: </h1>
+            <span class="mb-3"> Je choisit mon mode de paiement </span>
+        </div>
+        <div class="col-lg-8 mt-3">
+            <diV class="card">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="text text-center mt-3">
+                            <p style="color:#FFFFFF;">Evitez d'utiliser la carte d'autrui ou de faire
+                                plusieurs tentatives ratées sous peine d'être
+                                exclu par le système.
+                            </p>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="form-group mb-3 mt-3">
+                          <label for="exampleInputEmail1">NOM COMPLET</label>
+                          <input type="text" class="form-control form-control-lg">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label for="exampleInputPassword1">ADRESSE ELECTRONIQUE</label>
+                          <input type="email" class="form-control form-control-lg"  aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>NUMERO DE CARTE BANCAIRE</label>
+                            <input type="text" class="form-control form-control-lg">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>DATE D'EXPIRATION</label>
+                            <input type="date" class="form-control form-control-lg">
+                        </div>
+                        <button type="submit" class="btn btn-primary text-center w-100" style="border-radius: 30px;">PAYER MAINTENANT</button>
+                    </form>
+                </div>
+            </diV>
+        </div>
+        <div class="prix-compte-bank col-lg-4 mt-3 mb-3">
+           <div class="pagetitle mt-3">
+               <h5 style="color: #0057FF;">AfricaRelais</h5>
+               <p>Montant Total à Payer : <br>  <span style="color: #000D1E; font-weight: bold; text-decoration:underline;">15 000FCFA</span> </p>
+           </div>
+            <button type="submit" class="btn btn-primary text-center w-100" style="border-radius: 30px; background: #98BBFE;">Voir detail de la profil</button>
+        </div>
+      </div>
+  </section>
+{% endblock content %}

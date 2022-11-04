@@ -1,0 +1,38 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "staff/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Historique de point relais</h1>
+  <nav class="mt-2">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Team</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <h3 class="my-3 text-center">Modifier un Responsable</h3>     
+            <div class="col-8 mx-auto">
+              <form class="row g-3" method="POST">
+                {% csrf_token %} {% if errors %} {{ errors|safe }} {% endif %}
+                {% for field in form %}
+                <div class="col-12">{{ field }}</div>
+                {% endfor%}
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-success w-50 text-auto">
+                    Valider
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock content %}
+    </div>
+  </div>
+</div>

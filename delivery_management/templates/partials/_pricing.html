@@ -1,0 +1,667 @@
+{% load static %} {% block extrastyle %}
+<style>
+  .box {
+    border-radius: 0;
+  }
+
+  .livraison_1 {
+    width: 100%;
+    height: 170px;
+    background: linear-gradient(244.2deg, #0057ff -17.8%, #012f88 66.29%) box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding: 25px;
+  }
+
+  .text_1 {
+    width: 270px;
+    height: 103px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    color: #333333;
+    text-align: left;
+    margin: auto;
+  }
+
+  .livraison_2 {
+    width: 100%;
+    height: 170px;
+    background: linear-gradient(244.2deg, #ffc107 -17.8%, #b58304 66.29%);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding: 25px;
+  }
+
+  .livraison_3 {
+    width: 100%;
+    height: 170px;
+    background: linear-gradient(244.2deg, #b77456 -17.8%, #784d30 66.29%);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding: 25px;
+  }
+
+  #color_1 {
+    color: #0054f6;
+    padding-top: 44px;
+  }
+
+  #color_2 {
+    color: #fabd07;
+    padding-top: 44px;
+  }
+
+  #color_3 {
+    color: #87C1FF;
+    padding-top: 44px;
+  }
+
+  .container.content_price {
+    width: 140px;
+    height: 45px;
+    padding: 15px;
+    justify-content: center;
+  }
+
+  .box._pricing {
+    height: 470px;
+  }
+
+  .button-container {
+    padding: 40px;
+  }
+
+  .values .box._pricing {
+    padding: 0px;
+  }
+
+  .values .box.liv1 {
+    background: #ffffff;
+    height: 483px;
+  }
+
+  #price {
+    color: #ffffff;
+    font-size: 40px;
+    padding-top: 21px;
+    margin-left: -28px;
+  }
+
+  #color_pack {
+    background: -webkit-linear-gradient(#0057ff, #012f88);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #012f8826;
+    background-image: linear-gradient(284.31deg, #012f88 0%, #0057ff 100%);
+  }
+
+  #color_span_liv {
+    color: #1b2559;
+    font-weight: 500;
+  }
+
+  .btn-buy.card_2 {
+    background: linear-gradient(180deg, #ffc107 0%, #b58304 100%);
+  }
+
+  .btn-buy.card_1 {
+    background: linear-gradient(180deg, #0057ff 0%, #012f88 100%);
+  }
+
+  .btn-buy.card_3 {
+    background: linear-gradient(180deg, #b77456 0%, #784d30 100%);
+  }
+
+  .btn-buy.card_5 {
+    background: linear-gradient(180deg, #ffc107 0%, #b58304 100%);
+  }
+
+  .btn-buy.card_6 {
+    background: linear-gradient(180deg, #87C1FF 0%, #87C1FF 100%);
+  }
+
+  .alert {
+    height: 35px;
+    padding-top: 6px;
+    display: flex;
+    align-items: center;
+  }
+
+  .alert span {
+    margin-top: 7px;
+    margin-left: 10px;
+  }
+
+  .values .box.first_liv {
+    background: #ffffff;
+    height: 750px;
+  }
+
+  #price_1 {
+    color: #43a1f6;
+    margin-top: -22px;
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  #price_2 {
+    color: #6537d1;
+    margin-top: -22px;
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  #price_3 {
+    color: #1cc7d0;
+    margin-top: -22px;
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .livraison_first {
+    width: 50%;
+    height: 50px;
+    background: linear-gradient(244.2deg, #0057ff -17.8%, #012f88 66.29%);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+    -webkit-border-top-left-radius: 30px;
+    -webkit-border-bottom-right-radius: 30px;
+    -moz-border-radius-topleft: 30px;
+    -moz-border-radius-bottomright: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding: 25px;
+    margin-left: -20px;
+  }
+
+  .livraison_second {
+    width: 50%;
+    height: 50px;
+    background: linear-gradient(180deg, #ffc107 0%, #b58304 100%);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+    -webkit-border-top-left-radius: 30px;
+    -webkit-border-bottom-right-radius: 30px;
+    -moz-border-radius-topleft: 30px;
+    -moz-border-radius-bottomright: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding: 25px;
+    margin-left: -20px;
+  }
+
+  .alert-dark {
+    background-color: #87C1FF;
+    color: white;
+  }
+
+  .livraison_thirt {
+    width: 50%;
+    height: 50px;
+    background: linear-gradient(180deg, #87C1FF 0%, #87C1FF 100%);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+    -webkit-border-top-left-radius: 30px;
+    -webkit-border-bottom-right-radius: 30px;
+    -moz-border-radius-topleft: 30px;
+    -moz-border-radius-bottomright: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding: 25px;
+    margin-left: -20px;
+  }
+
+  .text-style {
+    font-size: 14px;
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    width: 400px;
+  }
+
+  .nav-tabs {
+    border-bottom: 0;
+  }
+
+  .nav-justified .nav-item {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .nav-justified .nav-item .nav-link {
+    width: auto;
+  }
+
+  .nav-tabs .nav-link {
+    border: solid transparent;
+    border-width: 0 0 2px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    color: #0056ff;
+    padding: 17px 29px 16px;
+    cursor: pointer;
+  }
+
+  .nav-tabs .nav-link.active {
+    color: #52647a;
+    border-color: #0057ff;
+  }
+
+  ._pricing .box {
+    position: relative;
+  }
+
+  .button-container {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    left: 0;
+    right: 0;
+  }
+
+  .box._pricing.first_liv {
+    -webkit-border-top-right-radius: 90px;
+    -webkit-border-bottom-left-radius: 90px;
+    -moz-border-radius-topright: 90px;
+    -moz-border-radius-bottomleft: 90px;
+    border-top-right-radius: 90px;
+    border-bottom-left-radius: 90px;
+  }
+
+  .box._pricing.first_liv {
+    -webkit-border-top-right-radius: 90px;
+    -webkit-border-bottom-left-radius: 90px;
+    -moz-border-radius-topright: 90px;
+    -moz-border-radius-bottomleft: 90px;
+    border-top-right-radius: 90px;
+    border-bottom-left-radius: 90px;
+  }
+
+  .bi.bi-x-lg {
+    color: red;
+  }
+
+  .bi.bi-check-lg {
+    color: green;
+  }
+</style>
+{% endblock extrastyle %}
+
+<!-- ======= Professional Section ======= -->
+<section id="values" class="values _pricing">
+  <div class="container">
+    <header class="section-header">
+      <p>NOS PACKS</p>
+      <h2>Type de livraison</h2>
+    </header>
+    <div class="m-2">
+      <div class="tab-nav">
+        <ul class="nav nav-tabs nav-justified" id="myTab">
+          <li class="nav-item">
+            <a href="#particular" class="nav-link active" data-bs-toggle="tab">Particulier</a>
+          </li>
+          <li class="nav-item">
+            <a href="#professionnal" class="nav-link" data-bs-toggle="tab">Professionel</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="particular">
+          <div class="row mt-4">
+            <div class="col-lg-4 mt-4 mt-lg-0 mb-5">
+              <div class="box _pricing first_liv">
+                <h3 id="color_1">Argent</h3>
+                <div class="livraison_first">
+                  <div class="container content_price">
+                    <h6 id="price_1">8 000 FCFA</h6>
+                  </div>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">10 Livraison</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Promotion de l'activité sur notre plateforme</span>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Création d'un point de relais</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Tarif et visibilité en contrepartie d'un code promo</span>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion trésorerie</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Retrait et dépot dans un PR uniquement</span>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-x-lg"></i>
+                  <span class="text-style">Promotion de l'activité</span>
+                </div>
+                <div class="alert  mx-3  mb-0 text-start" role="alert">
+                  <i class="bi bi-x-lg"></i>
+                  <span class="text-style">Développement à l'international</span>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-x-lg"></i>
+                  <span class="text-style">Club entreprise</span>
+                </div>
+                <div class="alert  mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-x-lg"></i>
+                  <span class="text-style">Club bunises</span>
+                </div>
+                <div class="button-container">
+                  <a href="https://wa.me/+221784283907?text=Bonjour AfricaRelais, je veux m'inscrire au pack Argent"
+                    class="btn-buy"> S'abonner </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mt-lg-0 mb-5">
+              <div class="box _pricing first_liv">
+                <h3 id="color_2">Gold</h3>
+                <div class="livraison_second">
+                  <div class="container content_price">
+                    <h6 id="price_2">13 000 FCFA</h6>
+                  </div>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">20 Livraisons</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion des retours dans les 3h apres le retrait</span>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Création d'un point de relais</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style"> Tarif et visibilité en contrepartie d'un code promo</span>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style"> Gestion trésorerie</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion et dépot dans un PR uniquement</span>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Promotion de l'activité</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Développement à l'international</span>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Accompagnement via un cabinet</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Club entreprise</span>
+                </div>
+                <div class="button-container">
+                  <a href="https://wa.me/+221784283907?text=Bonjour AfricaRelais, je veux m'inscrire au pack Gold"
+                    class="btn-buy card_5"> S'abonner </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mt-lg-0 mb-5">
+              <div class="box _pricing first_liv">
+                <h3 id="color_3">Diamant</h3>
+                <div class="livraison_thirt">
+                  <div class="container content_price">
+                    <h6 id="price_3">20 000 FCFA</h6>
+                  </div>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">30 Livraisons</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion des retours dans les 3h après le retait</span>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Création d'un point relais</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style"> Trafic et visibilité en contrepartie d'un code promo</span>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion trésorerie </span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Retrait et dépôt dans un PR uniquement</span>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Promotion de l'activité</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Developpement à l'international</span>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Accompagnement via un cabinet</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Club entreprise</span>
+                </div>
+                <div class="button-container">
+                  <a href="https://wa.me/+221784283907?text=Bonjour AfricaRelais, je veux m'inscrire au pack Diamant"
+                    class="btn-buy card_6"> S'abonner </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="professionnal">
+          <div class="row mt-4">
+            <div class="col-lg-4 mt-4 mt-lg-0 mb-5">
+              <div class="box _pricing first_liv">
+                <h3 id="color_1">Entrepreneurs</h3>
+                <div class="livraison_first">
+                  <div class="container content_price">
+                    <h6 id="price_1">8 000 FCFA</h6>
+                  </div>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">30 Livraison</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Retrait et dépot dans un PR uniquement</span>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Création d'un point de relais</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style"> Promotion de l'activité sur notre plateforme</span>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion trésorerie</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Tarif et visibilité en contrepartie d'un code promo</span>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-x-lg"></i>
+                  <span class="text-style">Promotion de l'activité</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-x-lg"></i>
+                  <span class="text-style">Développement à l'international</span>
+                </div>
+                <div class="alert alert-primary mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-x-lg"></i>
+                  <span class="text-style"> Accompagnement via un cabinet </span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-x-lg"></i>
+                  <span class="text-style">Club entreprise</span>
+                </div>
+                <div class="button-container">
+                  <a href="https://wa.me/+221784283907?text=Bonjour AfricaRelais, je veux m'inscrire au pack Entrepreneurs"
+                    class="btn-buy"> S'abonner </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mt-lg-0 mb-5">
+              <div class="box _pricing first_liv">
+                <h3 id="color_2">Business</h3>
+                <div class="livraison_second">
+                  <div class="container content_price">
+                    <h6 id="price_2">13 000 FCFA</h6>
+                  </div>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">45 Livraisons</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion des retours dans les 3h apres le retrait</span>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style"> Création d'un point de realais</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion et dépot dans un PR</span>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion trésorerie</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Tarif et visibilité en contrepartie d'un code promo</span>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Promotion de l'activité</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Développement à l'international</span>
+                </div>
+                <div class="alert alert-warning mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Accompagnement via un cabinet</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Club entreprise</span>
+                </div>
+                <div class="button-container">
+                  <a href="https://wa.me/+221784283907?text=Bonjour AfricaRelais, je veux m'inscrire au pack Business"
+                    class="btn-buy card_5"> S'abonner </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mt-lg-0 mb-5">
+              <div class="box _pricing first_liv">
+                <h3 id="color_3">Entreprises</h3>
+                <div class="livraison_thirt">
+                  <div class="container content_price">
+                    <h6 id="price_3">20 000 FCFA</h6>
+                  </div>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">80 Livraisons</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion des retours dans les 3h après le retait</span>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Retrait et dépôt dans un PR</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Possibilité de création d'un point relais automatique</span>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Gestion trésorerie</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Trafic et visibilité en contrepartie d'un code promo</span>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Promotion des activités</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Developpement à l'international</span>
+                </div>
+                <div class="alert alert-dark mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Accompagnement via un cabinet</span>
+                </div>
+                <div class="alert mx-3 my-3 text-start" role="alert">
+                  <i class="bi bi-check-lg"></i>
+                  <span class="text-style">Club entreprise</span>
+                </div>
+                <div class="button-container">
+                  <a href="https://wa.me/+221784283907?text=Bonjour AfricaRelais, je veux m'inscrire au pack Entreprises"
+                    class="btn-buy card_6"> S'abonner </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

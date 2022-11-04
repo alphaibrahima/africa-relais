@@ -1,0 +1,42 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %} {% include "staff/_sidebar.html" %} {% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+    <h1>Historique des Factures</h1>
+    <nav>
+        <ol class="breadcrumb mt-1">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active">Facture</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card card-body">
+            <h2 class="card-title text-center">Liste des Factures</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Numero</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Nom client </th>
+                            <th scope="col">Relayeur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bill in bills %}
+                        <tr>
+                            <td>{{bill.id}}</td>
+                            <td>{{bill.created|date:"d-m-Y"}}</td>
+                            <td><a href="#" class="text-primary">{{bill.client_name}}</a></td>
+                            <td>{{bill.delivery.delivered_by.get_full_name}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

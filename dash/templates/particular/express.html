@@ -1,0 +1,63 @@
+{% extends "_dash-base.html" %} 
+{% load static %}
+
+{% block sidebar %} 
+{% include "particular/_sidebar.html" %} 
+{% endblock sidebar %}
+
+{% block pagetitle %}
+<div class="pagetitle">
+    <h1>Service De Livraison Expresse</h1>
+    <nav>
+        <ol class="breadcrumb mt-2">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active">Service Expresse</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card card-body">
+            <h2 class="card-title text-center">Service Expresse</h2>
+            <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus rem consequuntur soluta, error omnis sint consectetur culpa animi ratione amet!
+            </p>
+
+            <div class="container">
+                <form>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="text-center mb-3">
+                            <h3>Accerder au service de livraison Expresse</h3>
+                        </div>
+                      <div class="col-6 mb-3">
+                          <label for="form-control"> Date </label>
+                        <input type="date" class="form-control">
+                      </div>
+                      <div class="col-6">
+                          <label for="form-control"> Adresse </label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <div class="col-6">
+                          <label for="form-control"> Expediteur </label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <div class="col-6">
+                          <label for="form-control"> Colis </label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <div class="col-12 mt-5">
+                        <button class="btn btn-primary w-100" type="submit">Envoyer</button>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
+  
+{% endblock content %}

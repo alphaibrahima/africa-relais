@@ -1,0 +1,53 @@
+<html>
+
+<body>
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-body">
+                <h2 class="card-title text-center">AfricaRelais</h2>
+
+                <div>
+                    <p>
+                        Facture no. {{ bill.id }}</br>
+                        <span class="secondary">
+                                  {{ bill.created|date:"d-M-Y" }}
+                                </span>
+                    </p>
+
+                    <h3>Bill to</h3>
+                    <p>
+                        Prénom : {{ bill.client_name }}<br> Téléphone : {{ bill.client_phone }}<br> Relayeur : {{ bill.delivery }}<br>
+
+                    </p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Type de livraison</th>
+                                <th scope="col">Montant de l'article</th>
+                                <th scope="col">Prix de livraison</th>
+                                <th scope="col">Nombre de livraison</th>
+                                <th scope="col">Prix total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>Economique {{user.pack}}</td>
+                                <td><a href="#" class="text-primary">{{package.price}}</a></td>
+                                <td>{{bill.amount}}</td>
+                                <td>{{delivery}}</td>
+                                <td class="fw-bolder">{{price}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

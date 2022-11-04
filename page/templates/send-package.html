@@ -1,0 +1,461 @@
+{% extends "_base.html" %} {% load static %} {% block extrastyle %}
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #map {
+    border: none;
+    left: 0;
+    top: 0;
+    border: 2px solid #dcddde;
+    border-radius: 30px;
+    width: 100%;
+    height: 650px;
+  }
+
+  h2.color_send {
+    background: -webkit-linear-gradient(#0057ff, #012f88);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #012f8826;
+    background-image: linear-gradient(284.31deg, #012f88 0%, #0057ff 100%);
+  }
+
+  .color_trac {
+    color: #333333;
+    font-size: 22px;
+  }
+
+  .color_env {
+    color: #333333;
+  }
+
+  .send_package {
+    background: #e5eeff;
+    border-radius: 30px;
+    height: 200px;
+  }
+
+  .desti {
+    border: 1px solid #ebebeb;
+    box-sizing: border-box;
+    width: 150px;
+    left: 622px;
+    border-radius: 3px;
+  }
+
+  .price {
+    border: 1px solid #ebebeb;
+    box-sizing: border-box;
+    color: #0057ff;
+    border-radius: 2px;
+  }
+
+  .exped {
+    background: #cadcfe;
+    border-radius: 15px;
+    padding: 10px;
+  }
+
+  .expediteur {
+    background: -webkit-linear-gradient(#0057ff, #012f88);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #012f8826;
+    background-image: linear-gradient(284.31deg, #012f88 0%, #0057ff 100%);
+    font-size: 24px;
+  }
+
+  .color_destinataire {
+    background: -webkit-linear-gradient(#0057ff, #012f88);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #012f8826;
+    background-image: linear-gradient(284.31deg, #012f88 0%, #0057ff 100%);
+    font-size: 24px;
+  }
+
+  .destinataire {
+    background: #cadcfe;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 5px;
+    margin-top: 7px;
+  }
+
+  .map-box {
+    padding: 0;
+    height: 650px;
+  }
+
+  .promo {
+    padding: 10px;
+  }
+
+  .col-lg-4.send_pack {
+    background: #e5eeff;
+    border-radius: 25px;
+  }
+
+  .env_col {
+    padding-top: 5%;
+  }
+
+  .env {
+    padding: 2%;
+    background: -webkit-linear-gradient(#0057ff, #012f88);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #012f8826;
+    background-image: linear-gradient(284.31deg, #012f88 0%, #0057ff 100%);
+  }
+
+  .h2.env {
+    padding: 4%;
+  }
+
+  .container.rectangle {
+    width: 350px;
+    height: 1px;
+    background: #cadcfe;
+  }
+
+  .horaire {
+    font-size: 12px;
+    line-height: 1px;
+  }
+
+  .select2-container--default .select2-selection--single {
+    background-color: #e5eeff;
+  }
+
+  .select2-container .select2-selection--single {
+    height: 35px;
+  }
+
+  .select2-selection__arrow {
+    display: none;
+  }
+
+  .select2-container .select2-selection--single .select2-selection__rendered {
+    padding-top: 5px;
+    text-align: left;
+  }
+</style>
+{% endblock extrastyle %} {% block content %}
+<section>
+  <div class="container">
+    <div class="titre">
+      <div class="titre-icon">
+      </div>
+      <div class="pagetitle">
+        <h2 class="color_send"> <i class="bi bi-search"></i> Envoyer Votre Colis </h2>
+        <h3 class="color_trac">Suivez les instructions pour finaliser votre envoi</h3>
+      </div>
+    </div>
+    <hr>
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+          <li class="breadcrumb-item active"> <span class="color_env"> Envoi Colis </span></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  </div>
+
+  <!-- integration card-->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-8 order-last order-xl-first">
+
+        <div id="googleMap" style="width:100%;height:700px;">
+        </div>
+
+      </div>
+
+      <div class="col-lg-4 send_pack">
+        <div class="titre">
+          <h5 class="env_col">Envoyer Mon Colis</h5>
+        </div>
+        <!-- <div class="container rectangle mb-3 mt-3"></div> -->
+        <form method="POST" enctype="multipart/form-data" class="mb-3 mt-4">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="exped">
+              <div class="text-center mt-3">
+                <h6 class="expediteur">Expéditeur</h6>
+              </div>
+
+              <div class="row col mt-3">
+                <div class="form-group col-md-12">
+                  <select class="form-control" name="mode_relais" style="width: 100%" required
+                    id="mode_relais">
+                    <option value="">Choisir un mode de retrait</option>
+                    <option value="domicile">Domicile</option>
+                    <option value="point_relais">Point relais</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row col mt-3">
+                <div class="form-group col-md-12">
+                  <select class="departures form-control" name="id_departure_point" style="width: 100%" required
+                    id="id_departure_point">
+                    <option value=""></option>
+                    {% for departure in departures %}
+                    <option value="{{ departure.name }}">{{ departure.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="row col mt-3">
+                <div class="form-group col-md-6 mb-3">
+                  {{form.sender_first_name}}
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                  {{form.sender_last_name}}
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                  {{form.sender_phone}}
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                  {{form.sender_email}}
+                </div>
+              </div>
+              <span class="mb-2 text-center">Contenu de mon envoi</span>
+              <div class="row">
+                <label for="inputPoids" class="col-sm-6 col-form-label fw-bold text-center">Poids en KG</label>
+                <div class="col-sm-6">
+
+                  {{form.package_weigth}}
+
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="formFileSm" class="form-label">Ajouter une photo</label>
+                {{form.package_picture}}
+              </div>
+            </div>
+
+            <div class="destinataire">
+              <div class="row col mt-3">
+
+                  <div class="form-row">
+                    <div class="destinataire">
+                      <div class="text-center">
+                        <h6 class="color_destinataire">Destinataire</h6>
+                      </div>
+                      <div class="row col mt-3">
+                        <div class="form-group col-md-12 mb-3">
+                          <select class="departures form-control" name="id_arrival_point" style="width: 100%" required
+                            id="id_arrival_point">
+                            <option value=""></option>
+                            {% for departure in departures %}
+                            <option value="{{ departure.name }}">{{ departure.name }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                          {{form.customer_first_name}}
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                          {{form.customer_last_name}}
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                          {{form.customer_phone}}
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                          {{form.customer_email}}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="promo">
+                    <div class="row col mt-3">
+                      <div class="form-group col-md-12">
+                        <select class="form-control" name="mode_recup" style="width: 100%" required
+                          id="mode_recup">
+                          <option value="">Choisir un mode de récupération</option>
+                          <option value="standards">Standards</option>
+                          <option value="economique">Economique</option>
+                          <option value="express">Express</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                    <div class="promo">
+                      <div class="row col mt-3">
+                        <div class="form-group col">
+                          <input type="text" class="form-control" id="inputAddress" name="code_promo" placeholder="Code Promo">
+                        </div>
+                      </div>
+                      <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" name="dimension_colis" value="dimension" id="defaultCheck1" required>
+                        <label class="form-check-label" for="defaultCheck1">
+                          Je confirme que mon colis rentre dans les dimensions.
+                        </label>
+                      </div>
+                      <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" name="respect_reglement" value="produit-legal" id="defaultCheck1" required>
+                        <label class="form-check-label" for="defaultCheck1">
+                          Je confirme que mon colis ne contient pas de prodruits
+                          interdits et /ou dangereux*
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <h6>
+                        <span class="color_prix"> Montant à payer : </span>
+                        <span class="price"></span>
+                      </h6>
+                      <!-- <a class="btn btn-primary mt-3 mb-3" href="{% url 'login' %}">Envoyer</a> -->
+                      <button class="btn btn-primary mt-3 mb-3" type="submit">Envoyer</button>
+
+                    </div>
+
+                  </div>
+              </div>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- end integration card-->
+</section>
+
+{% endblock content %} {% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAP_API_KEY}}&callback=initMap"></script> -->
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+
+  /*var lat = 14.775562500000000;
+  var long = -17.417187500000000;
+
+
+  function myMap() {
+    var mapProp = {
+      center: new google.maps.LatLng(lat, long),
+      zoom: 5,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+  }
+  */
+
+
+  $(document).ready(function () {
+
+    $('.departures').select2();
+    var price = $('.price');
+
+
+    var lat = {{data.lat}};
+    var lon = {{data.lon}};
+
+  var map = new google.maps.Map(document.getElementById('googleMap'), {
+      zoom: 13,
+      center: new google.maps.LatLng(lat, lon),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(lat, lon),
+    // icon : icone,
+    map: map,
+    animation: google.maps.Animation.DROP,
+   
+  });
+
+  
+    // function initMap() {
+    //   map = new google.maps.Map(document.getElementById("googleMap"), {
+    //     center: new google.maps.LatLng(lat, lon),
+    //     zoom: 11,
+    //     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    //     mapTypeControl: true,
+    //     scrollwheel: false,
+    //     mapTypeControlOptions: {
+    //       style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+    //     },
+    //     navigationControl: true,
+    //     navigationControlOptions: {
+    //       style: google.maps.NavigationControlStyle.ZOOM_PAN
+    //     }
+    //   });
+
+    // }
+
+
+    // initMap()
+
+
+    function ajaxCall(id_departure_point, id_arrival_point) {
+
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'delivery:get_delivery_price' %}",
+        data: {
+          departure_point: id_departure_point,
+          arrival_point: id_arrival_point,
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+        },
+        dataType: 'json',
+        success: function (data) {
+          price.text(data['price'] + " " + "CFA")
+        },
+        error: function (err) {
+          alert(err.responseText)
+          price.text(0 + " " + "CFA")
+        },
+      })
+    }
+
+    $('#id_departure_point').change(function () {
+      var id_departure_point = $(this).val()
+      var id_arrival_point = $('#id_arrival_point').val()
+      // Ajax call
+      ajaxCall(id_departure_point, id_arrival_point)
+    })
+
+
+
+    $('#id_arrival_point').change(function () {
+      var id_arrival_point = $(this).val()
+      var id_departure_point = $('#id_departure_point').val()
+      // Ajax call
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'delivery:get_delivery_price' %}",
+        data: {
+          departure_point: id_departure_point,
+          arrival_point: id_arrival_point,
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+        },
+        dataType: 'json',
+        success: function (data) {
+          price.text(data['price'] + " " + "CFA")
+        },
+        error: function (err) {
+          alert(err.responseText)
+          price.text(0 + " " + "CFA")
+        },
+      })
+    })
+
+
+  })
+</script>
+{% endblock extrajs %}

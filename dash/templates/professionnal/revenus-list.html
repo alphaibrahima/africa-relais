@@ -1,0 +1,56 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %} {% include "professionnal/_sidebar.html" %} {% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+    <h1>Revenus de professionnel</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active">Revenus</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+
+
+    <div class="col-xxl-3 col-xl-6 mx-auto">
+
+        <div class="card info-card customers-card linear-bg">
+
+
+            <div class="card-body">
+                <h5 class="card-title white-card-title text-center">Revenus Total de mes articles</h5>
+
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                        <h6 class="white-h6">30 000 FCFA</h6>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pt-2">
+        <h5 class="card-title text-center pb-0 fs-4">Retirer une partie de son revenue</h5>
+    </div>
+
+    <form action="" method="post" class="mt-2 text-center">
+        {% csrf_token %}
+        <div class="row mb-3">
+            <label for="Country" class="col-md-4 col-lg-3 col-form-label">Somme:</label>
+            <div class="col-md-8 col-lg-6">
+                <input name="price" type="text" class="form-control" id="Country" placeholder="Sommme à retirer">
+            </div>
+        </div>
+        <div class="col-4 mx-auto">
+            <button class="btn btn-primary" type="submit">Valider</button>
+        </div>
+    </form>
+
+</div>
+{% endblock content %}

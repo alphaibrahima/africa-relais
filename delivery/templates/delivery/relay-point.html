@@ -1,0 +1,105 @@
+{% extends "_base.html" %}
+{% load static %}
+
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="titre">
+            <div class="titre-icon">
+                <!-- <img src="" alt=""> -->
+            </div>
+            <div class="pagetitle">
+                <h1 style="color: #0057FF;"> <i class="bi bi-geo-alt-fill"></i> Point De Relais </h1>
+                <h3 style="color: #333333;">Trouvez votre point de relais facilement</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="pagetitle">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+                    <li class="breadcrumb-item active"> <span style="color: #333333;"> Point de relais </span></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="search-section">
+        <div class="container">
+            <form>
+                <div class="row col-lg-12">
+                    <div class="col-6">
+                        <input type="text" class="form-control" placeholder="Localité">
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="text" class="form-control" placeholder="Se Localiser">
+                    </div>
+                    <div class="col-lg-3">
+                        <button type="button" class="btn btn-primary" style="width: 195px;">Trouver</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <div class="row col-lg-12">
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="box" style="border: 1px solid #E0E0E0; border-radius: 30px; height: 700px;">
+                        <div class="container">
+                            <h3 style="color: #000C24;"> <i class="bi bi-geo-alt-fill"></i> Point de relais autour</h3>
+                            <div class="mt-2" style="background: #E5EEFF;
+                                        text-align:center;
+                                        border-radius: 30px;">
+                                <h6 class="mt-3">1 Boutique Sope Nabi</h6>
+                                <p>Dakar <br> Keur Massar <br> Station Shell</p>
+                            </div>
+                            <div style="background: #FFFFFF;
+                                        border: 1px solid #E0E0E0;
+                                        box-sizing: border-box;
+                                        text-align:center;
+                                        border-radius: 25px;">
+                                <h6 class="mt-3">1 Boutique Sope Nabi</h6>
+                                <p>Dakar <br> Keur Massar <br> Station Shell</p>
+                            </div>
+                            <div class="mt-3" style="background: #E5EEFF;
+                                        text-align:center;
+                                        border-radius: 25px;">
+                                <h6 class="mt-3">1 Boutique Sope Nabi</h6>
+                                <p>Dakar <br> Keur Massar <br> Station Shell</p>
+                            </div>
+                            <div style="background: #FFFFFF;
+                                        border: 1px solid #E0E0E0;
+                                        text-align:center;
+                                        box-sizing: border-box;
+                                        border-radius: 25px;">
+                                <h6>1 Boutique Sope Nabi</h6>
+                                <p>Dakar <br> Keur Massar <br> Station Shell</p>
+                            </div>
+                            <div class="mt-3" style="background: #E5EEFF;
+                                        text-align:center;
+                                        border-radius: 25px;">
+                                <h6>1 Boutique Sope Nabi</h6>
+                                <p>Dakar <br> Keur Massar <br> Station Shell</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="box">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123488.89302656948!2d-17.535865520368105!3d14.711013935009264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172f5b3c5bb71%3A0xb17c17d92d5db21f!2sDakar!5e0!3m2!1sfr!2ssn!4v1641982974222!5m2!1sfr!2ssn"
+                            width="550" height="500" style="border:0;
+                                width: 736px;
+                                height: 700px;
+                                left: 65px;
+                                top: 668px;
+                                border: 2px solid #DCDDDE;
+                                border-radius: 30px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}

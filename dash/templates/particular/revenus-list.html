@@ -1,0 +1,58 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %} {% include "particular/_sidebar.html" %} {% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+    <h1>Carnet d'adresse Particulier</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active">Carnet d'adresse</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card card-body">
+            <h2>Carnet d'adresse</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Adresse</th>
+                            <th scope="col">Expéditeur</th>
+                            <th scope="col">Type de livraison</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12-01-22</td>
+                            <td><a href="#" class="text-primary">Keur Massar</a></td>
+                            <td>Amdou Mbow</td>
+                            <td>Express</td>
+                        </tr>
+                        <tr>
+                            <td>12-01-22</td>
+                            <td><a href="#" class="text-primary">Keur Massar</a></td>
+                            <td>Amdou Mbow</td>
+                            <td>Express</td>
+                        </tr>
+                        <tr>
+                            <td>12-01-22</td>
+                            <td><a href="#" class="text-primary">Keur Massar</a></td>
+                            <td>Amdou Mbow</td>
+                            <td>Express</td>
+                        </tr>
+                        <tr>
+                            <td>12-01-22</td>
+                            <td><a href="#" class="text-primary">Keur Massar</a></td>
+                            <td>Amdou Mbow</td>
+                            <td>Express</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,63 @@
+{% load static page_tags %}
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'team-package-list' %}"
+    href="{% url 'dashboard:team-package-list' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/bx_bxs-box (2).png' %}"
+        alt="Colis"
+        class="img-fluid"
+      />
+    </span>
+    <span class="amar">Colis</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'team-deliverman-list' %}"
+    href="{% url 'dashboard:team-deliverman-list' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/user-alt (2).png' %}"
+        alt="Relayeur"
+        class="img-fluid"
+      />
+    </span>
+    <span class="amar">Relayeur</span>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'team-relaypoint-liste' %}"
+    href="{% url 'dashboard:team-relaypoint-liste' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/bi_shop-window.png' %}"
+        alt="Point relais"
+        class="img-fluid"
+      />
+    </span>
+    <span class="amar">Point relais</span>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'team-profile' %}"
+    href="{% url 'dashboard:team-profile' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/mdi_cog-outline.png' %}"
+        alt="Parametres"
+        class="img-fluid"
+      />
+    </span>
+    <span>Profil</span>
+  </a>
+</li>

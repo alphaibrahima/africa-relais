@@ -1,0 +1,114 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "staff/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Historique de colis</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Historique de colis</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <h2>Historique de colis</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered datatable">
+          <thead>
+            <tr>
+              <th scope="col">Numéro de suivi</th>
+              <th scope="col">Date dépôt</th>
+              <th scope="col">Destinataire</th>
+              <th scope="col">Expéditeur</th>
+              <th scope="col">Nom du relayeur</th>
+              <th scope="col">Mode livraison</th>
+              <th scope="col">Date retrait</th>
+              <th scope="col">Prix Livraison</th>
+              <th scope="col">Commision</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for package in packages %}
+            <tr>
+              <td>{{package.tracking_number}}</td>
+              <td>{{package.created|date:"d-m-Y"}}</td>
+              <td>{{package.customer.full_name}}</td>
+              <td>{{package.sender.get_full_name}}</td>
+              <td>{{package.delivered_by.get_full_name}}</td>
+              <td>{{package.get_mode_display}}</td>
+              <td>{{package.created|date:"d-m-Y"}}</td>
+              <td>{{package.amount}}</td>
+              <td></td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm assign-package"
+                  data-package-id="{{ package.id }}"
+                  data-bs-toggle="modal"
+                  data-bs-target="#delivermen"
+                >
+                  Assigner
+                </button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Team Modal -->
+<div
+  class="modal fade"
+  id="delivermen"
+  tabindex="-1"
+  aria-labelledby="delivermenLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delivermenLabel">Assigner à un relayeur</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="col-12">
+            {{ form.delivermen }}
+            <input type="hidden" name="package_id" id="packageId" />
+          </div>
+
+          <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-success w-100">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $(document).on('click', '.assign-package', function () {
+      var packageId = $(this).attr('data-package-id')
+      $('#packageId').val(packageId)
+    })
+  })
+</script>
+{% endblock extrajs %}

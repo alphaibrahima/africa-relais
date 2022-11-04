@@ -1,0 +1,66 @@
+{% extends "_dash-base.html" %}
+{% load static %}
+
+{% block sidebar %}
+{% include "particular/_sidebar.html" %}
+{% endblock sidebar %}
+
+{% block pagetitle %}
+<div class="pagetitle">
+    <h1>Compte Prépayer</h1>
+    <nav>
+        <ol class="breadcrumb mt-2">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active">Compte Prépayer</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %}
+
+{% block content %}
+<section class="container">
+    <div class="row">
+        <div class="pagetitle text-center">
+            <h1 class="mb-3">RECHARGER MON COMPTE</h1>
+            <span class="mb-3"> Je choisit mon mode de paiement </span>
+        </div>
+        <div class="col-lg-6 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Mobile Money</h5>
+                    <div class="mobile-money">
+                        <a href="{% url 'dashboard:choice_pay' %}">
+                            <center><img src="{% static 'img/dash/Group_317.png' %}" alt="Facture" class="img-fluid"
+                                    width="160" height="70"></center>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Carte Bancaire</h5>
+                    <div class="container justify-content-center">
+                        <a href="{% url 'dashboard:bank_pay' %}">
+                            <center><img src="{% static 'img/dash/debit-card.png' %}" alt="Facture" class="img-fluid"
+                                    width="140"></center>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <a href="https://wa.me/+221784283907?text=Bonjour AfricaRelais, je veux payer" class="btn btn-primary mb-5"
+            target="_blan">Effectuer le paiement</a>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit elementum dui, vitae eget tempor at cursus
+            donec ultricies. Purus diam risus nec porttitor ut libero vulputate vel malesuada. Nunc, quis magna nibh
+            enim a sed fringilla at. Orci duis bibendum a sit tellus elementum id. Etiam mattis rhoncus fermentum at
+            ut turpis eget. Consectetur adipiscing curabitur aliquam, nec, pretium adipiscing consequat. Erat neque,
+            libero quisque in sagittis amet. Sit quis nisl pretium auctor enim, urna nisl elit elit.</p>
+    </div>
+</section>
+{% endblock content %}

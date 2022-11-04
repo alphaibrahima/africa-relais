@@ -1,0 +1,129 @@
+{% extends "_base.html" %} {% load static %} {% block header %}
+<!-- End Page Title -->
+{% endblock header %} {% block extrastyle %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/css/intlTelInput.css"
+  integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+  .form-tel {
+    margin-right: 6rem !important;
+    width: 100% !important;
+  }
+</style>
+{% endblock extrastyle %} {% block content %}
+<section class="section p-0 register min-vh-100 d-flex flex-column align-items-center justify-content-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+        <a href="/" class="logo mt-3 text-center align-items-center">
+          <img src="{% static 'img/logo.png' %}" alt="Logo" width="80" />
+        </a>
+        <div class="card mb-3 mt-3">
+          <div class="card-body">
+            <div class="pt-4 pb-2">
+              <h5 class="card-title text-center pb-3">Inscription</h5>
+              <div class="pb-3 text-center">
+                <a href="https://forms.gle/TT18da75n9ctBsbZA" target="_blank">Devenir Relayeur</a> |
+                <a href="https://forms.gle/3otKEZ1Rf7ZkpufZ9" target="_blank">Devenir Point Relais</a>
+              </div>
+              <form class="row g-3" method="POST" id="form">
+                {% csrf_token %} {% for field in form %}
+                <div class="col-12">
+                  <label for="{{ field.name }}">{{ field.label }}: </label>
+                  <div>{{ field }}</div>
+                </div>
+                {% endfor %}
+                <div class="col-12 mt-3">
+                  <button class="btn btn-primary w-100" type="submit">
+                    S'inscrire
+                  </button>
+                </div>
+                <div class="col-12">
+                  <p class="small mb-0">
+                    Deja inscrit? <a href="{% url 'login' %}">Je me connecte</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %} {% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/intlTelInput-jquery.min.js"
+  integrity="sha512-ukIH6qcYcteJIe83qld9SO3nKLKWZ+GVy5LTpPaOl/fL3Qoq1iwQ3/PHESL1Y//NgXBD6Yrsa4++0QgLaqDalw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAP_API_KEY }}
+    &libraries=places&callback=initMap">
+</script>
+
+<script src="{% static 'js/jquery.passwordStrengthForcer.js' %}"></script>
+<script>
+  $("#phone").intlTelInput({
+    allowDropdown: true,
+    formatOnInit: true,
+    initialCountry: "sn",
+    separateDialCode: true,
+  });
+
+
+
+  $('.password').passwordStrengthForcer({
+
+    prettystatmap: {
+      minlengthgood: "minimum 8 caractères",
+      maxlengthgood: "",
+      uppercasegood: "1 majuscule",
+      digitsgood: "1 nombre",
+      specialgood: "1 caractère spécial",
+      good: '<i class="bi bi-check" aria-hidden="true" style="color: green"></i>',
+      fail: '<i class="bi bi-exclamation-diamond" aria-hidden="true" style="color: red"></i>'
+    }
+
+  });
+
+  $('#form').on('submit', function () {
+    if ($('.password').attr('data-passwordStrengthForcer_AllGood') != '1') {
+      alert("Merci de vérifier les mots de passes!");
+      $('.password').focus();
+      return false;
+    }
+
+    if ($("#id_password1").val() !== $("#id_password2").val()) {
+      alert("Les deux mots de passe ne sont pas identiques!");
+      $('.password').focus();
+      return false;
+    }
+  })
+
+
+  const center = {
+    lat: 50.064192,
+    lng: -130.605469
+  };
+  // Create a bounding box with sides ~10km away from the center point
+  const defaultBounds = {
+    north: center.lat + 0.1,
+    south: center.lat - 0.1,
+    east: center.lng + 0.1,
+    west: center.lng - 0.1,
+  };
+  // const input = document.getElementById("pac-input");
+  // const options = {
+  //   bounds: defaultBounds,
+  //   componentRestrictions: {
+  //     country: "sn"
+  //   },
+  //   fields: ["address_components", "geometry", "icon", "name"],
+  //   strictBounds: false,
+  //   types: ["establishment"],
+  // };
+  // const autocomplete = new google.maps.places.Autocomplete(input, options);
+</script>
+{% endblock extrajs %} {% block footer %}{% endblock footer %}

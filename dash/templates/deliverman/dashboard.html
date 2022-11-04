@@ -1,0 +1,251 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->
+{% include "deliverman/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Tableau de bord</h1>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <!-- Left side columns -->
+  <div class="col-lg-12">
+    <div class="row">
+      <!-- Sales Card -->
+      <div class="col-xxl-4 col-md-4">
+        <div class="card info-card sales-card">
+          <div class="card-body">
+            <h5 class="card-title">Nombre de livraisons envoyées</h5>
+
+            <div class="d-flex align-items-center">
+              <div
+                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+              >
+                <i class="bi bi-box"></i>
+              </div>
+              <div class="ps-3">
+                <h6>{{packages|default_if_none:"0"}} Livraison</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Sales Card -->
+
+      <!-- Revenue Card -->
+      <div class="col-xxl-4 col-md-4">
+        <div class="card info-card revenue-card">
+          <div class="card-body">
+            <h5 class="card-title">Nombre de livraisons restantes</h5>
+
+            <div class="d-flex align-items-center">
+              <div
+                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+              >
+                <i class="bi bi-box"></i>
+              </div>
+              <div class="ps-3">
+                <h6>{{packages|default_if_none:"0"}} Livraison</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Revenue Card -->
+      <div class="col-xxl-4 col-xl-4">
+        <div class="card-info">
+          <div class="card info-card customers-card bg-linear-bleu">
+            <div class="card-body">
+              <h5 class="card-title color-rev">Total Revenue Mois</h5>
+              <div class="d-flex align-items-center">
+                <div
+                  class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-currency-dollar"></i>
+                </div>
+                <div class="ps-3">
+                  <h6 class="white-h6">
+                    {{income_deliverman|default_if_none:"0"}} FCFA
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Customers Card -->
+      <div class="col-xxl-4 col-xl-4">
+        <div class="card info-card customers-card bg-linear-bleu">
+          <div class="card-body">
+            <h5 class="card-title color-rev">Total Revenue Relayeur</h5>
+            <div class="d-flex align-items-center">
+              <div
+                class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+              >
+                <i class="bi bi-currency-dollar"></i>
+              </div>
+              <div class="ps-3">
+                <h6 class="white-h6">
+                  {{income_deliverman|default_if_none:"0"}} FCFA
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Customers Card -->
+
+      <!-- Reports -->
+      <div class="col-12">
+        <div class="card">
+          <div class="filter">
+            <a class="icon" href="#" data-bs-toggle="dropdown"
+              ><i class="bi bi-three-dots"></i
+            ></a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+              <li class="dropdown-header text-start">
+                <h6>Filter</h6>
+              </li>
+
+              <li><a class="dropdown-item" href="#">Today</a></li>
+              <li><a class="dropdown-item" href="#">This Month</a></li>
+              <li><a class="dropdown-item" href="#">This Year</a></li>
+            </ul>
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">
+              Statistique de Revenue <span>Pour Chaque livraison</span>
+            </h5>
+
+            <!-- Line Chart -->
+            <div id="reportsChart"></div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+            <script>
+              let dl = '{{ income_deliverman|safe }}'
+              document.addEventListener('DOMContentLoaded', () => {
+                new ApexCharts(document.querySelector('#reportsChart'), {
+                  series: [
+                    {
+                      name: 'Sales',
+                      data: [31, 40, 28, 51, 42, 82, 56],
+                    },
+                    {
+                      name: 'Revenue livraison',
+                      data: [dl],
+                    },
+                    {
+                      name: 'Customers',
+                      data: [15, 11, 32, 18, 9, 24, 11],
+                    },
+                  ],
+                  chart: {
+                    height: 350,
+                    type: 'area',
+                    toolbar: {
+                      show: false,
+                    },
+                  },
+                  markers: {
+                    size: 4,
+                  },
+                  colors: ['#0056FF', '#2eca6a', '#ff771d'],
+                  fill: {
+                    type: 'gradient',
+                    gradient: {
+                      shadeIntensity: 1,
+                      opacityFrom: 0.3,
+                      opacityTo: 0.4,
+                      stops: [0, 90, 100],
+                    },
+                  },
+                  dataLabels: {
+                    enabled: false,
+                  },
+                  stroke: {
+                    curve: 'smooth',
+                    width: 2,
+                  },
+                  xaxis: {
+                    type: 'datetime',
+                    categories: [
+                      '2018-09-19T00:00:00.000Z',
+                      '2018-09-19T01:30:00.000Z',
+                      '2018-09-19T02:30:00.000Z',
+                      '2018-09-19T03:30:00.000Z',
+                      '2018-09-19T04:30:00.000Z',
+                      '2018-09-19T05:30:00.000Z',
+                      '2018-09-19T06:30:00.000Z',
+                    ],
+                  },
+                  tooltip: {
+                    x: {
+                      format: 'dd/MM/yy HH:mm',
+                    },
+                  },
+                }).render()
+              })
+            </script>
+            <!-- End Line Chart -->
+          </div>
+        </div>
+      </div>
+      <!-- End Reports -->
+    </div>
+  </div>
+  <!-- End Left side columns -->
+  <!-- Recent Sales -->
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <div class="card recent-sales">
+          <div class="card-body">
+            <h5 class="card-title">Historique de colis</h5>
+            <div class="table-responsive">
+              <table class="table table-bordered datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">Numéro suivi colis</th>
+                    <th scope="col">Date dépôt</th>
+                    <th scope="col">Destinataire</th>
+                    <th scope="col">Expéditeur</th>
+                    <th scope="col">Nom du relayeur</th>
+                    <th scope="col">Mode livraison</th>
+                    <th scope="col">Date retrait</th>
+                    <th scope="col">Prix Livraison</th>
+                    <th scope="col">Commision</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for package in all_package %}
+                  <tr>
+                    <td>{{package.tracking_number}}</td>
+                    <td>{{package.created|date:"d-m-Y"}}</td>
+                    <td>{{package.customer.full_name}}</td>
+                    <td>{{package.sender.get_full_name}}</td>
+                    <td>{{package.delivered_by.get_full_name}}</td>
+                    <td>{{package.get_mode_display}}</td>
+                    <td>{{package.created|date:"d-m-Y"}}</td>
+                    <td>{{package.amount}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="float-end mt-3">
+              <a
+                href="{% url 'dashboard:deliverman-history-list' %}"
+                class="btn btn-primary"
+                >Voir plus</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Recent Sales -->
+</div>
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% load page_tags %} {% load static %}
+<li class="nav-item">
+  <a class="nav-link {% current_link_active 'realypoint-revenue' %}"
+    href="{% url 'dashboard:realypoint-revenue' %}">
+    <span>
+      <img
+        src="{% static 'img/dash/icon-park-outline_bill2.png' %}"
+        alt="Colis"
+        class="img-fluid"
+      />
+    </span>
+    <span>Revenus</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'realypoint-package' %}"
+    href="{% url 'dashboard:realypoint-package' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/bx_bxs-box (2).png' %}"
+        alt="Colis"
+        class="img-fluid"
+      />
+    </span>
+    <span>Colis</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'realypoint-horaire' %}"
+    href="{% url 'dashboard:realypoint-horaire' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/icon-park-outline_notebook (1).png' %}"
+        alt="Parametres"
+        class="img-fluid"
+      />
+    </span>
+    <span>Horaire</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a
+    class="nav-link {% current_link_active 'realypoint-profile' %}"
+    href="{% url 'dashboard:realypoint-profile' %}"
+  >
+    <span>
+      <img
+        src="{% static 'img/dash/mdi_cog-outline.png' %}"
+        alt="Profile"
+        class="img-fluid"
+      />
+    </span>
+    <span>Profile</span>
+  </a>
+</li>

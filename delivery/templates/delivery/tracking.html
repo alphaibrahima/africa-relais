@@ -1,0 +1,276 @@
+{% extends "_base.html" %} {% load static %} {% block extrastyle %}
+<style>
+  .color_suiv {
+    color: #0057ff;
+  }
+
+  .color_suiv_t {
+    color: #333333;
+    font-size: 22px;
+  }
+
+  .suivre_colis {
+    color: #333333;
+  }
+
+  .suivre {
+    width: 195px;
+  }
+
+  .recup_colis {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .colis_suiv {
+    color: #0057ff;
+  }
+
+  .package_par {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .btn.follow {
+    width: auto;
+  }
+
+  .text-center.text {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .text-center.text-2 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .input-group.form-control {
+    border-radius: 15px;
+  }
+
+  .para-text {
+    text-align: left;
+  }
+
+
+
+  .step-text p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .step-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .step-number {
+    width: 85px;
+    height: 85px;
+    border: 7px solid #106eea;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 60px;
+    background: #fff;
+  }
+
+  .step-number span {
+    font-size: 1.6rem;
+  }
+
+  .step-title {
+    margin: 1rem 0;
+  }
+
+  .step-title h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .step-explanation p {
+    text-align: center;
+  }
+
+  .step-para {
+    background-color: #e5eeff;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-top: 1rem;
+  }
+</style>
+{% endblock extrastyle %} {% block content %}
+
+<!-- ======= Values Section ======= -->
+<section id="values" class="values">
+  <div class="container">
+    <div class="titre">
+      <div class="titre-icon">
+        <!-- <img src="" alt=""> -->
+      </div>
+      <div class="pagetitle">
+        <h2 class="color_suiv">
+          <i class="bi bi-search"></i> SUIVI DU RELAYEUR
+        </h2>
+        <h3 class="color_suiv_t">Suivez votre livraison en temps reel</h3>
+      </div>
+    </div>
+    <hr />
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+          <li class="breadcrumb-item active">
+            <span class="suivre_colis"> Suivi du Relayeur </span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="container mt-5">
+
+    <form action="{% url 'delivery:tracking-results' %}" method="get">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Numéro de colis..." name="tracking_number" />
+        <div class="input-group-append mx-3">
+          <button class="btn btn-primary follow" type="submit">Suivre</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="container p-4">
+    <div class="step-text">
+      <p>
+        Vous allez récupérer votre colis chez un de nos partenaires !, c'est la
+        première plateforme de récuperation de colis en point relais qui
+        reinvente la livraison
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="step-card">
+          <div class="step-number">
+            <span>1</span>
+          </div>
+          <div class="step-title">
+            <h3>Notification par mail</h3>
+          </div>
+          <div class="step-explanation">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+              praesentium reprehenderit voluptatem harum enim? Unde, blanditiis
+              mollitia esse rerum nam nihil magnam et velit sint quod culpa
+              deserunt autem ducimus.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="step-card">
+          <div class="step-number">
+            <span>2</span>
+          </div>
+          <div class="step-title">
+            <h3>Contactez le walker</h3>
+          </div>
+          <div class="step-explanation">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+              praesentium reprehenderit voluptatem harum enim? Unde, blanditiis
+              mollitia esse rerum nam nihil magnam et velit sint quod culpa
+              deserunt autem ducimus.
+            </p>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="step-card">
+          <div class="step-number">
+            <span>3</span>
+          </div>
+          <div class="step-title">
+            <h3>Aller chez le walker</h3>
+          </div>
+          <div class="step-explanation">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+              praesentium reprehenderit voluptatem harum enim? Unde, blanditiis
+              mollitia esse rerum nam nihil magnam et velit sint quod culpa
+              deserunt autem ducimus.
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="step-card">
+          <div class="step-number">
+            <span>4</span>
+          </div>
+          <div class="step-title">
+            <h3>Récupérer mon colis</h3>
+          </div>
+          <div class="step-explanation">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+              praesentium reprehenderit voluptatem harum enim? Unde, blanditiis
+              mollitia esse rerum nam nihil magnam et velit sint quod culpa
+              deserunt autem ducimus.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="step-para">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a
+        diam eget erat iaculis condimentum. Mauris ac volutpat nisi. Praesent et
+        iaculis orci. Aenean vitae mi lacinia, tincidunt nunc quis, blandit est.
+        Praesent id porttitor odio, vitae iaculis lectus. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Proin placerat sagittis lectus
+        sit amet convallis. Interdum et malesuada fames ac ante ipsum primis in
+        faucibus. Aenean sem orci, tincidunt id nibh eget, fermentum dapibus
+        ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+        volutpat lobortis velit, vitae commodo purus fringilla sed. Proin eget
+        justo vitae metus ultricies vulputate ultricies at dolor. Sed bibendum
+        sapien ante, id rhoncus nunc tincidunt sit amet. Orci varius natoque
+        penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        Curabitur nec erat sed purus ultrices suscipit in quis orci. Nulla
+        blandit mi vel laoreet rhoncus. Aliquam egestas in urna et euismod. Nam
+        sit amet dui imperdiet, vestibulum sem non, congue lorem. Phasellus
+        iaculis mauris sit amet diam sodales, et mattis sem egestas. Aliquam
+        dolor leo, vulputate id auctor eu, venenatis sit amet neque. Ut laoreet
+        ante diam, sit amet tristique erat tincidunt quis. Nulla nunc nulla,
+        vestibulum eu nulla non, vehicula viverra erat. Fusce leo tortor,
+        suscipit vitae ipsum non, egestas vehicula quam. Sed lacinia ac magna id
+        luctus. Suspendisse massa neque, consectetur et turpis et, pharetra
+        luctus mauris. Cras consectetur sit amet nisl imperdiet porta. Aliquam
+        sollicitudin, neque ut dictum fringilla, nisl orci vestibulum orci, eget
+        tristique nibh nulla egestas ipsum. Curabitur vel velit sit amet urna
+        dignissim fermentum quis vel urna. Sed vel condimentum nisl.
+        Pellentesque tincidunt, ligula sed semper blandit, lorem lacus congue
+        mauris, ac viverra sem ex semper dolor. Integer lobortis sodales tortor,
+        eget faucibus ligula congue vel. Aliquam viverra aliquet odio luctus
+        suscipit. Praesent vel odio nisi. Praesent at mi et eros fermentum
+        euismod a eu nisi. Donec at felis nisl.
+      </p>
+    </div>
+  </div>
+
+
+</section>
+<!-- End Values Section -->
+{% endblock content %}

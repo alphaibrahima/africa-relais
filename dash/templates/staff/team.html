@@ -1,0 +1,164 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "staff/_sidebar.html" %}<!-- End Page Title -->
+{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Liste des responsables</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Responsables</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <div class="my-2 float-end">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#addTeamMember"
+        >
+          Ajouter un responsable
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Nom complet</th>
+              <th scope="col">Date de création</th>
+              <th scope="col">Email</th>
+              <th scope="col">Téléphone</th>
+              <th scope="col">Address</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for member in members %}
+            <tr>
+              <td>
+                <a href="#" class="text-primary">{{ member.get_full_name }}</a>
+              </td>
+              <td>{{ member.date_joined|date:"d-m-Y" }}</td>
+              <td>{{ member.email }}</td>
+              <td>{{ member.phone }}</td>
+              <td>{{ member.address }}</td>
+              <td>
+                <div class="d-flex">
+                  <!-- <button
+                    data-object-id="{{member.pk}}"
+                    id="realypoint"
+                    class="btn btn-outline-danger delete_realypoint_btn me-2"
+                    type="button"
+                    data-url="{% url 'dashboard:staff-delete-team' member.pk %}"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button> -->
+                  <button type="button" class="btn btn-outline-danger me-2 " title="Supprimer le responsable" data-bs-toggle="modal" data-bs-target="#ModalForDesactivate">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  <div class="modal fade" id="ModalForDesactivate" tabindex="-1" aria-labelledby="ModalLabelDesactivate" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="ModalLabelDesactivate">Vous désactivez le compte de: {{ member.email }}</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+                          <button type="button" class="btn btn-outline-success">OK</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-outline-info"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addTeamMemberUpdate"
+                  >
+                    <a href="{% url 'dashboard:staff-update-team' member.pk%}"
+                      ><i class="bi bi-pencil"></i
+                    ></a>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Team Modal -->
+<div
+  class="modal fade"
+  id="addTeamMember"
+  tabindex="-1"
+  aria-labelledby="addTeamMemberLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addTeamMemberLabel">
+          Ajouter un nouveau responsable
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" method="POST">
+          {% csrf_token %} {% if errors %} {{ errors|safe }} {% endif %}<!-- End Page Title -->
+          {% for field in form %}
+          <div class="col-12">{{ field }}</div>
+          {% endfor %}
+          <div class="col-12">
+            <button type="submit" class="btn btn-success w-100">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block extrajs %}
+<script>
+  $(document).ready(function () {
+    $(document).on('click', '.delete_realypoint_btn', function () {
+      let relayId = $(this).attr('data-object-id')
+      var dataUrl = $(this).attr('data-url')
+      if (confirm('Vous supprimez le responsable: ' + relayId)) {
+        $.ajax({
+          type: 'POST',
+          url: dataUrl,
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+          },
+          dataType: 'json',
+          success: function (response) {
+            alert(response.message)
+            $('#realypoint' + relayId).remove()
+          },
+          error: function (err) {
+            alert(err.error)
+          },
+        })
+      } else {
+        alert('Responsable non supprimé')
+      }
+    })
+  })
+</script>
+
+{% endblock extrajs %}

@@ -1,0 +1,219 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "staff/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Gestion Relayeur</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Realayeur</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered datatable">
+          <thead>
+            <tr>
+              <th scope="col">Nom complet</th>
+              <th scope="col">Date de création</th>
+              <th scope="col">Email</th>
+              <th scope="col">Téléphone</th>
+              <th scope="col">Address</th>
+              <th scope="col">Nombre de livraison</th>
+              <th scope="col">Commission</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in deliverymen %}
+
+            <tr id="user-{{ user.id }}">
+              <td>
+                <a href="#" class="text-primary">{{ user.get_full_name }}</a>
+              </td>
+              <td>{{ user.date_joined|date:"d-m-Y" }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.address }}</td>
+              <td>{{ user.deliveries.count }}</td>
+              <td>{{ user.delivries.amount }}</td>
+              <td>
+                <div class="d-flex">
+                  <!-- <button
+                    class="btn btn-outline-danger delete-account-btn me-3"
+                    type="button"
+                    title="Desactiver ce compte"
+                    data-url="{% url 'dashboard:delete-user-account' user.id %}"
+                    data-user-id="{{ user.id }}"
+                    data-user-email="{{ user.email }}"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button> -->
+                  <button type="button" class="btn btn-outline-danger"  title="Desactiver ce compte" data-bs-toggle="modal" data-bs-target="#ModalForDesactivate">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  <div class="modal fade" id="ModalForDesactivate" tabindex="-1" aria-labelledby="ModalLabelDesactivate" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="ModalLabelDesactivate">Vous désactivez le compte de:{{ user.email }}</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+                          <button type="button" class="btn btn-outline-success">OK</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <button
+                    class="btn btn-outline-success activate-account-btn me-3"
+                    type="button"
+                    title="Activer ce compte"
+                    data-url="{% url 'dashboard:activate-user-account' user.id %}"
+                    data-user-id="{{ user.id }}"
+                    data-user-email="{{ user.email }}"
+                  >
+                    <i class="bi bi-eye"></i>
+                  </button> -->
+                  <button type="button" class="btn btn-outline-success me-3 " title="Activer ce compte" data-bs-toggle="modal" data-bs-target="#ModalForActivate">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <div class="modal fade" id="ModalForActivate" tabindex="-1" aria-labelledby="ModalLabelActivate" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="ModalLabelActivate">Vous allez activer ce compte de {{user.email}}</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+                          <button type="button" class="btn btn-outline-success">Ajouter</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    class="btn btn-outline-info"
+                    href="{% url 'dashboard:staff-update-deliverymen' user.pk %}"
+                  >
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Team Modal -->
+<div
+  class="modal fade"
+  id="addRealyPoint"
+  tabindex="-1"
+  aria-labelledby="addRealyPointLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addRealyPointLabel">
+          Ajouter un point relais
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" method="POST">
+          {% csrf_token %} {% if errors %} {{ errors|safe }} {% endif %}
+          <!-- End Page Title -->
+          {% for field in form %}
+          <div class="col-12">{{ field }}</div>
+          {% endfor %}
+          <div class="col-12">
+            <button type="submit" class="btn btn-success w-100">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block extrajs %}
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script>
+  $(document).ready(function () {
+    $(document).on('click', '.delete-account-btn', function () {
+      var dataUrl = $(this).attr('data-url')
+      var userEmail = $(this).attr('data-user-email')
+      var userId = $(this).attr('data-user-id')
+
+      if (confirm('Vous Supprimer le compte de: ' + userEmail)) {
+        $.ajax({
+          type: 'POST',
+          url: dataUrl,
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+          },
+          dataType: 'json',
+          success: function (response) {
+            alert(response.message)
+            $('#user-' + userId).remove()
+          },
+          error: function (err) {
+            alert(err.error)
+          },
+        })
+      } else {
+        alert('ralayeur non supprimer')
+      }
+    })
+  })
+</script>
+<script>
+  $(document).ready(function () {
+    $(document).on('click', '.activate-account-btn', function () {
+      var dataUrl = $(this).attr('data-url')
+      var userEmail = $(this).attr('data-user-email')
+      var userId = $(this).attr('data-user-id')
+
+      if (confirm('Vous activez le compte de: ' + userEmail)) {
+        $.ajax({
+          type: 'POST',
+          url: dataUrl,
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+          },
+          dataType: 'json',
+          success: function (response) {
+            alert(response.message)
+            $('#user-' + userId).active()
+          },
+          error: function (err) {
+            alert(err.error)
+          },
+        })
+      } else {
+        alert('Utilisateur non desactivé')
+      }
+    })
+  })
+</script>
+{% endblock extrajs %}

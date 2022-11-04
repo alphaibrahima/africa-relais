@@ -1,0 +1,18 @@
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "HOST": "localhost",
+        "NAME": "<nom bd>",
+        "USER": "<utilisateur bd>",
+        "PASSWORD": "<mot de passe bd>",
+        "PORT": "5432",
+    },
+}
+
+SOCIAL_AUTH_FACEBOOK_KEY = ""  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = ""
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ""
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
+
+GOOGLE_MAP_API_KEY = ""

@@ -1,0 +1,69 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "realypoint/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Horaire Point Relaiss</h1>
+  <nav>
+    <ol class="breadcrumb mt-2">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Horaire</li>
+    </ol>
+  </nav>
+</div>
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card recent-sales">
+      <div class="card-body">
+        <h5 class="card-title">Horaire Point Relais</h5>
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">Jour</th>
+              <th scope="col">Ouverture</th>
+              <th scope="col">Fermeture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>lundi</td>
+              <td><a href="#" class="text-primary">08h 00</a></td>
+              <td style="color: red">10h 00</td>
+            </tr>
+            <tr>
+              <td>Mardi</td>
+              <td><a href="#" class="text-primary">08h 00</a></td>
+              <td style="color: red">08h 00</td>
+            </tr>
+            <tr>
+              <td>Mercredi</td>
+              <td><a href="#" class="text-primary">08h 00</a></td>
+              <td style="color: red">08h 00</td>
+            </tr>
+            <tr>
+              <td>Jeudi</td>
+              <td><a href="#" class="text-primary">08h 00</a></td>
+              <td style="color: red">08h 00</td>
+            </tr>
+            <tr>
+              <td>Vendredi</td>
+              <td><a href="#" class="text-primary">08h 00</a></td>
+              <td style="color: red">08h 00</td>
+            </tr>
+            <tr>
+              <td>Samedi</td>
+              <td><a href="#" class="text-primary">08h 00</a></td>
+              <td style="color: red">08h 00</td>
+            </tr>
+            <tr>
+              <td>Dimanche</td>
+              <td><a href="#" class="text-primary">08h 00</a></td>
+              <td style="color: red">08h 00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

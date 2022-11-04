@@ -1,0 +1,56 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "professionnal/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Historique de colis professionnelle</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Historique de colis</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <h2>Historique de colis</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered datatable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date dépôt</th>
+              <th scope="col">Destinataire</th>
+              <th scope="col">Expéditeur</th>
+              <th scope="col">Abonnement</th>
+              <th scope="col">Mode livraison</th>
+              <th scope="col">Date retrait</th>
+              <th scope="col">Montant article</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for package in packages %}
+            <tr>
+              <td>{{package.id}}</td>
+              <td>{{package.created|date:"d-m-Y"}}</td>
+              <td>{{package.customer.full_name}}</td>
+              <td>{{package.sender.get_full_name}}</td>
+              <td>
+                <a href="#" class="text-primary"
+                  >{{package.get_pack_display}}</a
+                >
+              </td>
+              <td>{{package.get_mode_display}}</td>
+              <td>{{package.created|date:"d-m-Y"}}</td>
+              <td>{{package.amount}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

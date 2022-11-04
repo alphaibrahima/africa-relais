@@ -1,0 +1,204 @@
+{% extends "_dash-base.html" %} {% load static %} {% block title %} Utilisateurs
+{% endblock title %} {% block sidebar %} {% include "staff/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %}
+<!-- End Page Title -->
+{% block extrastyle %} {% endblock extrastyle %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Gestion utilisateurs</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Utilisateurs</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered datatable">
+          <thead>
+            <tr>
+              <th scope="col">Nom complet</th>
+              <th scope="col">Date de création</th>
+              <th scope="col">Email</th>
+              <th scope="col">Téléphone</th>
+              <th scope="col">Address</th>
+              <th scope="col">Type</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+
+            <tr id="user-{{ user.id }}">
+              <td>
+                <a href="#" class="text-primary">{{ user.get_full_name }}</a>
+              </td>
+              <td>{{ user.date_joined|date:"d-m-Y" }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.address }}</td>
+              <td>
+                <span class="badge bg-primary">
+                  {{ user.get_user_type_display }}</span>
+              </td>
+
+              <td>
+                <!-- <button
+                  class="btn btn-outline-warning deactivate-account-btn"
+                  type="button"
+                  title="Desactiver ce compte"
+                  data-url="{% url 'dashboard:deactivate-user-account' user.id %}"
+                  data-user-id="{{ user.id }}"
+                  data-user-phone="{{ user.phone }}"
+                >
+                  <i
+                    class="bi bi-{% if user.is_active %}eye-slash{% else %}eye{% endif %}"
+                  ></i>
+                </button> -->
+                <button type="button" class="btn btn-outline-warning " data-url="" title="Desactiver ce compte"
+                  data-bs-toggle="modal" data-bs-target="#ModalForDesactivate">
+                  <i class="bi bi-{% if user.is_active %}eye-slash{% else %}eye{% endif %}"></i>
+                </button>
+                <div class="modal fade" id="ModalForDesactivate" tabindex="-1" aria-labelledby="ModalLabelDesactivate"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabelDesactivate">Vous désactivez le compte de:{{ user.phone }}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-outline-success">OK</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-outline-primary" type="button" title="Modifier">
+                  <a href="{% url 'dashboard:staff-update-user'  user.pk %}"><i class="bi bi-brush"></i></a>
+                </button>
+                <!-- <button
+                  class="btn btn-outline-danger delete-account-btn"
+                  type="button"
+                  title="Supprimer ce compte"
+                  data-url="{% url 'dashboard:delete-user-account' user.id %}"
+                  data-user-id="{{ user.id }}"
+                  data-user-phone="{{ user.phone }}"
+                >
+                  <i class="bi bi-trash"></i>
+                </button> -->
+                <button type="button" class="btn btn-outline-danger "
+                  data-url="{% url 'dashboard:delete-user-account' user.id %}" title="Supprimer" data-bs-toggle="modal"
+                  data-bs-target="#ModalForDelete">
+                  <i class="bi bi-trash"></i>
+                </button>
+                <div class="modal fade" id="ModalForDelete" tabindex="-1" aria-labelledby="ModalLabelDelete"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabelDelete">Vous allez supprimer le compte de :
+                          {{ user.phone }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-outline-success">OK</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="alertbox" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p id="error"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock content %} {% block extrajs %}
+<!--
+<script>
+  $(document).ready(function () {
+    $(document).on('click', '.deactivate-account-btn', function () {
+      var dataUrl = $(this).attr('data-url')
+      var userPhone = $(this).attr('data-user-phone')
+      var userId = $(this).attr('data-user-id')
+
+      if (confirm('Vous désactivez le compte de: ' + userPhone)) {
+        $.ajax({
+          type: 'POST',
+          url: dataUrl,
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+          },
+          dataType: 'json',
+          success: function (response) {
+            alert(response.message)
+            $('#user-' + userId).remove()
+          },
+          error: function (err) {
+            alert(err.error)
+          },
+        })
+      } else {
+        alert('Utilisateur non desactivé')
+      }
+    })
+
+    $(document).on('click', '.delete-account-btn', function () {
+      var dataUrl = $(this).attr('data-url')
+      var userPhone = $(this).attr('data-user-phone')
+      var userId = $(this).attr('data-user-id')
+
+      if (confirm('Vous supprimez le compte de: ' + userPhone)) {
+        $.ajax({
+          type: 'POST',
+          url: dataUrl,
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+          },
+          dataType: 'json',
+          success: function (response) {
+            alert(response.message)
+            $('#user-' + userId).remove()
+          },
+          error: function (err) {
+            alert(err.error)
+          },
+        })
+      } else {
+        alert('Utilisateur non supprimé')
+      }
+    })
+  })
+</script> -->
+{% endblock extrajs %}

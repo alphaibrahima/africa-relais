@@ -1,0 +1,264 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %} {% include "staff/_sidebar.html" %}
+{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+    <h1>Historique de point relais</h1>
+    <nav class="mt-2">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active">Point relais</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card card-body">
+            <h2 class="mt-2 text-center">Point Relais</h2>
+
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#addRealyPoint"
+                        class="btn btn-primary float-start"><i class="bi bi-plus"></i></>
+                        Ajouter un point relais</button>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#addMoreRealyPoint"
+                        class="btn btn-primary float-start"><i class="bi bi-plus"></i></>
+                        Ajouter des points relais</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Numéro Téléphone</th>
+                                <th scope="col">Date de création</th>
+                                <th scope="col">Adresse</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for relay in relay_point %}
+                            <tr>
+                                <td>{{relay.name }}</td>
+                                <td>{{relay.phone }}</td>
+                                <td>{{relay.created|date:"d-m-Y" }}</td>
+                                <td><a href="#" class="text-primary">{{relay.address}}</a></td>
+                                <td>{{relay.email|default_if_none:"Non renseigné"}}</td>
+                                <div class="d-flex">
+                                    <td>
+                                        <!-- <button
+                      class="btn btn-outline-warning desactivate-realypoint-account-btn"
+                      type="button"
+                      title="Activer ce compte"
+                      data-url="{% url 'dashboard:activate_realypoint_account' relay.id %}"
+                      data-user-id="{{ relay.id }}"
+                      data-user-phone="{{ relay.name }}"
+                    >
+                    <i
+                    class="bi bi-{% if relay.is_active %}eye-slash{% else %}eye{% endif %}"
+                  ></i>
+                    </button> -->
+                    <button type="button" class="btn btn-outline-warning "  title="Activer ce compte" data-bs-toggle="modal" data-bs-target="#ModalForActivate">
+                        <i
+                    class="bi bi-{% if relay.is_active %}eye-slash{% else %}eye{% endif %}"
+                  ></i>
+                      </button>
+                      <div class="modal fade" id="ModalForActivate" tabindex="-1" aria-labelledby="ModalLabelActivate" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="ModalLabelActivate">Vous activer le point relais:{{relay.name }}</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+                              <button type="button" class="btn btn-outline-success">OK</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                                        <!-- <button data-object-id="{{ relay.pk }}" id="realypoint"
+                                            class="btn btn-outline-danger delete_realypoint_btn" type="button"
+                                            data-url="{% url 'dashboard:staff-delete-relaypoint' relay.pk %}">
+                                            <i class="bi bi-trash "></i>
+                                        </button> -->
+                                        <button type="button"  class="btn btn-outline-danger"  title="Supprimer" data-bs-toggle="modal" data-bs-target="#ModalForDesactivate">
+                                            <i class="bi bi-trash"></i>
+                                          </button>
+                                          <div class="modal fade" id="ModalForDesactivate" tabindex="-1" aria-labelledby="ModalLabelDesactivate" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="ModalLabelDesactivate">Vous allez supprimer le point relais: {{relay.name}}</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+                                                  <button type="button" class="btn btn-outline-success">OK</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        <a class="btn btn-outline-info"
+                                            href="{% url 'dashboard:staff-update-relaypoint' relay.pk %}">
+                                            <i class="bi bi-pencil "></i>
+                                        </a>
+                                    </td>
+                                </div>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- New Team Modal -->
+        <div class="modal fade" id="addRealyPoint" tabindex="-1" aria-labelledby="addRealyPointLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addRealyPointLabel">Ajouter un point relais</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3 " method="POST">
+                            {% csrf_token %} {% if errors %} {{ errors|safe }} {% endif %} {% for field in form %}
+                            <div class="col-12">
+                                {{ field }}
+                            </div>
+                            {% endfor%}
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success w-100">Valider</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- New Team Modal -->
+        <div class="modal fade" id="addMoreRealyPoint" tabindex="-1" aria-labelledby="addRealyPointLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addRealyPointLabel">Ajouter des points relais</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3 " method="POST" enctype="multipart/form-data">
+                            {% csrf_token %} {% if errors %} {{ errors|safe }} {% endif %}
+                            <div class="form-group">
+                                <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+                                <div class="col-md-8">
+                                    <input type="file" name="excel_file" id="csv_file" required="True"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success w-100"><i
+                                        class="mx-2 bi bi-upload"></i>Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- New Team Modal -->
+        <div class="modal fade" id="addMoreRealyPoint" tabindex="-1" aria-labelledby="addRealyPointLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addRealyPointLabel">Ajouter des points relais</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3 " method="POST" enctype="multipart/form-data">
+                            {% csrf_token %} {% if errors %} {{ errors|safe }} {% endif %}
+                            <div class="form-group">
+                                <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+                                <div class="col-md-8">
+                                    <input type="file" name="csv_file" id="csv_file" required="True"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success w-100"><i
+                                        class="mx-2 bi bi-upload"></i>Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        {% endblock content %}
+
+        {% block extrajs %}
+        <script>
+        $(document).ready(function () {
+                $(document).on('click', '.desactivate-realypoint-account-btn', function () {
+      var dataUrl = $(this).attr('data-url')
+      var userPhone = $(this).attr('data-user-phone')
+      var userId = $(this).attr('data-user-id')
+
+      if (confirm('Vous desactivez le compte de point relais: ' + userPhone)) {
+        $.ajax({
+          type: 'POST',
+          url: dataUrl,
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+          },
+          dataType: 'json',
+          success: function (response) {
+            alert(response.message)
+            $('#user-' + userId).remove()
+          },
+          error: function (err) {
+            alert(err.error)
+          },
+        })
+      } else {
+        alert('Point relais non desactivé')
+      }
+    })
+
+                $(document).on("click", ".delete_realypoint_btn", function () {
+                    let relayId = $(this).attr('data-object-id');
+                    var dataUrl = $(this).attr("data-url")
+                    if (confirm("Vous supprimez le point relais: " + relayId)) {
+                        $.ajax({
+                            type: "POST",
+                            url: dataUrl,
+                            data: {
+                                csrfmiddlewaretoken: '{{ csrf_token }}'
+                            },
+                            dataType: "json",
+                            success: function (response) {
+                                alert(response.message)
+                                $("#realypoint" + relayId).remove()
+                            },
+                            error: function (err) {
+                                alert(err.error)
+                            }
+                        });
+                    } else {
+                        alert("Point relais non supprimé")
+                    }
+
+                })
+
+            });
+        </script>
+        {% endblock extrajs %}

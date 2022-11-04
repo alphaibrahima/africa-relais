@@ -1,0 +1,50 @@
+{% extends "_dash-base.html" %} {% load static %} {% block sidebar %}
+<!-- End Page Title -->{% include "deliverman/_sidebar.html" %}
+<!-- End Page Title -->{% endblock sidebar %} {% block pagetitle %}
+<div class="pagetitle">
+  <h1>Point Relais disponible</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      <li class="breadcrumb-item active">Point Relais disponible</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %} {% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-body">
+      <h3 class="text-center mt-2">Point relais disponible</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered datatable">
+            <thead>
+                <tr>
+                    <th scope="col">Numéro</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Prénom et Nom</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Heure d'ouverture</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for relay in realypoint %}
+                <tr>
+                    <td>{{relay.id }}</td>
+                    <td>{{relay.created|date:"d-m-Y" }}</td>
+                    <td><a href="#" class="text-primary">{{relay.address}}</a></td>
+                    <td>{{relay.user.get_full_name }}</td>
+                    <td>{{relay.phone}}</td>
+                    <td>{{relay.email}}</td>
+                    <td>{{relay.open_hours}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

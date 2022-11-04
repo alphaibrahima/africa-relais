@@ -1,0 +1,73 @@
+{% extends "_dash-base.html" %} 
+{% load static %}
+
+{% block sidebar %} 
+{% include "particular/_sidebar.html" %} 
+{% endblock sidebar %} 
+
+{% block pagetitle %}
+<div class="pagetitle">
+    <h1>Compte Prépayer</h1>
+    <nav>
+        <ol class="breadcrumb mt-2">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'dashboard:paiement' %}">Mode de Paiement</a></li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+{% endblock pagetitle %}
+
+{% block content %}
+<section class="container">
+    <div class="row">
+        <div class="pagetitle text-center">
+            <h1 class="mb-3" >PAYER AVEC : </h1>
+            <span class="mb-3"> Je choisit mon mode de paiement </span>
+        </div>
+        <div class="col-lg-3 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Wave</h5>
+                    <div class="container justify-content-center">
+                        <a href="{% url 'dashboard:paiement-wave' %}"><center><img src="{% static 'img/dash/wave.png' %}" alt="Facture" class="img-fluid" width="80"></center></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Orange Monney</h5>
+                    <div class="container justify-content-center">
+                        <a href="{% url 'dashboard:paiement-orange-money' %}"><center><img src="{% static 'img/dash/Orange_Money-Logo.png' %}" alt="Facture" class="img-fluid" width="140"></center></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Free Monney</h5>
+                    <div class="container justify-content-center">
+                        <a href="{% url 'dashboard:paiement-free-money' %}"><center><img src="{% static 'img/dash/free.png' %}" alt="Facture" class="img-fluid" width="80"></center></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Paydunya</h5>
+                    <div class="container justify-content-center">
+                        <a href="{% url 'dashboard:paiement-dunya' %}"> <center><img src="{% static 'img/dash/paydunya.png' %}" alt="Facture" class="img-fluid" width="80"></center> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
