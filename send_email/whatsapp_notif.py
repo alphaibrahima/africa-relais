@@ -6,8 +6,8 @@ from twilio.rest import Client
 # and set the environment variables. See http://twil.io/secure
 
 def send_notif_whats(phone, body):
-    account_sid = 'AC20bb5fc8ca8d48d9eea294e00f15c3ce' 
-    auth_token = 'ccab37bd91efc69d1f70e85e3ab40602' 
+    account_sid = '' 
+    auth_token = '' 
     client = Client(account_sid, auth_token) 
     
     message = client.messages.create( 
