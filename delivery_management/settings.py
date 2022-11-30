@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -143,8 +144,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 #gmail_send/settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = '' #past the key or password app here
+EMAIL_HOST_USER = 'alphaibrahimas95@gmail.com'
+EMAIL_HOST_PASSWORD = 'vueceqqxqyilsate' #past the key or password app here
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'default from email'
@@ -184,6 +185,10 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get(
     "SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET", ""
 )
 GOOGLE_MAP_API_KEY = "AIzaSyD5wsfYfE2McRiOW63nenWBg5Medke2yQ8"
+
+TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')
+
 
 try:
     from .local_settings import *  # noqa

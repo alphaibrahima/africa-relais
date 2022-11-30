@@ -2,7 +2,7 @@ from django.http.response import JsonResponse
 from django.conf import settings
 
 from send_email.views import send_new_register_email
-from send_email.whatsapp_notif import send_notif_whats
+from send_email.whatsapp_notif import send_notif_whats, send_notif_infobip
 from .forms import (
     ChangePasswordForm,
     CustomUserUpdateForm,
@@ -72,12 +72,17 @@ class RegisterView(View):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(data=request.POST)
-        body ="Nous sommes heureux de vous accueillir dans la communauté d’AfricaRelais. AfricaRelais est une plateforme de mise en relation collaborative entre particuliers et/ou entreprises pour la livraison de colis dans la région de Dakar via points relais. Nous avons hâte de vous retrouver sur nos différentes plateformes. En tant que membre de la communauté, vous pouvez : Sur serviceclient@africarelais.com : Poser des questions à nos équipes, faire des réclamations et/ou suggestion sur le service. Les suggestions feront l’objet d’une étude par les équipes d’AfricaRelais. Nous rejoindre sur : Facebook : https://web.facebook.com/AfricaRelais?_rdc=1&_rdr Instagram Nous contacter via WhatsApp au +221 784283907 Afin de finaliser votre inscription à notre service, cliquez sur le lien suivant : Communauté AfricaRelais.",
+        # body ="Nous sommes heureux de vous accueillir dans la communauté d’AfricaRelais. AfricaRelais est une plateforme de mise en relation collaborative entre particuliers et/ou entreprises pour la livraison de colis dans la région de Dakar via points relais. Nous avons hâte de vous retrouver sur nos différentes plateformes. En tant que membre de la communauté, vous pouvez : Sur serviceclient@africarelais.com : Poser des questions à nos équipes, faire des réclamations et/ou suggestion sur le service. Les suggestions feront l’objet d’une étude par les équipes d’AfricaRelais. Nous rejoindre sur : Facebook : https://web.facebook.com/AfricaRelais?_rdc=1&_rdr Instagram Nous contacter via WhatsApp au +221 784283907 Afin de finaliser votre inscription à notre service, cliquez sur le lien suivant : Communauté AfricaRelais.",
 
         if form.is_valid():
             email = form.cleaned_data.get("email")
+            first_name = form.cleaned_data.get("first_name")
+            last_name = form.cleaned_data.get("last_name")
             phone = form.cleaned_data.get("phone")
-            phonetw = f"+221{phone}"
+            phonetw = f"whatsapp:+221{phone}"
+            print(first_name)
+            # body =f"Bonjour  \n Nous sommes heureux de vous accueillir {phone} {first_name} dans la communauté d’AfricaRelais. AfricaRelais est une plateforme de mise en relation collaborative entre particuliers et/ou entreprises pour la livraison de colis dans la région de Dakar via points relais. Nous avons hâte de vous retrouver sur nos différentes plateformes. En tant que membre de la communauté, vous pouvez : Sur serviceclient@africarelais.com : Poser des questions à nos équipes, faire des réclamations et/ou suggestion sur le service. Les suggestions feront l’objet d’une étude par les équipes d’AfricaRelais. Nous rejoindre sur : Facebook : https://web.facebook.com/AfricaRelais?_rdc=1&_rdr Instagram Nous contacter via WhatsApp au +221 784283907 Afin de finaliser votre inscription à notre service, cliquez sur le lien suivant : Communauté AfricaRelais.",
+
             mail_to_lower = email.lower()
             password = form.cleaned_data.get("password1")
             password2 = form.cleaned_data.get("password2")
@@ -95,8 +100,9 @@ class RegisterView(View):
                             user,
                             backend="django.contrib.auth.backends.ModelBackend",
                         )
-                        send_new_register_email(email)
+                        send_new_register_email(email, first_name, last_name)
                         # send_notif_whats(phonetw, body)
+                        # send_notif_infobip(phonetw, body)
                         messages.success(request, "Compte crée avec succes...")
                         return redirect("login")
             else:

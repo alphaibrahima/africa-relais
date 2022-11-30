@@ -75,7 +75,10 @@ class Package(BaseTimeStampedModel):
     )
 
     def __str__(self):
+        if not self.delivered_by:
+            return ""
         return str(self.delivered_by)
+
 
     def _get_unique_tracking_number(self):
         unique_tracking_number = self.tracking_number
